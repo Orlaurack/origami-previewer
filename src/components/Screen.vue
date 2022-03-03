@@ -1,9 +1,10 @@
 <template>
   <canvas 
     id="screen"
+    ref="screen"
     :class="'screen '/*+(solidSettingsService.antiAliasing?'optimizequality':'optimizespeed')*/"
-    :width="getDefinition()"
-    :height="getDefinition()"
+    :width="screen.definition"
+    :height="screen.definition"
     @touchstart="touchStart($event)"
     @touchmove="touchMove($event)"
     @touchend="touchEnd($event)"
@@ -15,6 +16,7 @@
 <script>
 import { Coordinate } from '../models/coordinate'
 import { Solid } from '../models/solids/solid'
+import { Palette } from '../modules/palette'
 import { Screen } from '../modules/screen'
 import CircleSlider from './CircleSlider.vue'
 
@@ -25,19 +27,26 @@ export default {
     this.solid = new Solid('icosaedre', 1, 100)
   },
   mounted() {
-    // let ctx = document.getElementById('screen').getContext('2d')
-    // this.screen = new Screen(this.solid, ctx)
-    // this.screen.play();
+    const ctx = document.getElementById('screen').getContext('2d')
+    this.screen = new Screen(this.solid,this.palette, ctx)
+    this.screen.definition = this.$refs.screen.clientWidth
+    this.screen.play();
+    window.addEventListener('resize', ()=>{
+      this.screen.definition = this.$refs.screen.clientWidth
+    });
 
-    // document.onmouseup = this.mouseUp
-    // document.onmousemove = this.mouseMove
+
+    document.onmouseup = this.mouseUp
+    document.onmousemove = this.mouseMove
 },
   data() {
     return {
-      solid: Solid
+      solid: Solid,
+      screen: Screen
     };
   },
   props: {
+    palette: Palette
   },
   methods: {
     touchStart(e) {

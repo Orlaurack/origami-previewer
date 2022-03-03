@@ -1,11 +1,11 @@
 <template>
   <div class="app bg-gray-800">
-    <Screen prop-test="sdilfhads">{{}}</Screen>
-    <div class="content">
+    <Screen prop-test="sdilfhads" :palette="palette" ref="screen">{{}}</Screen>
+    <div class="content overflow-hidden">
       <Menu @select="selectedMenu=$event"></Menu>
-      <Palette v-if="selectedMenu=='palette'"></Palette>
-      <Option v-if="selectedMenu=='option'"></Option>
-      <Download v-if="selectedMenu=='download'" title="download menu"></Download>
+      <Palette class="overflow-auto" v-if="selectedMenu=='palette'" :palette="palette"></Palette>
+      <Option class="overflow-auto" v-if="selectedMenu=='option'" :screen="this.screen"></Option>
+      <Download class="overflow-auto" v-if="selectedMenu=='download'" title="download menu"></Download>
     </div>
   </div>
 </template>
@@ -15,8 +15,9 @@ import Menu from './components/Menu.vue'
 import Palette from './views/Palette.vue'
 import Option from './views/Option.vue'
 import Download from './views/Download.vue'
+import { Palette as PaletteModule } from './modules/palette'
+import { Screen as ScreenModule } from './modules/screen'
 
-import { Solid } from './models/solids/solid'
 
 </script>
 <script lang="ts">
@@ -30,11 +31,18 @@ export default {
     Option,
     Download,
   ],
-  created() {},
+  created() {
+    this.palette = new PaletteModule()
+  },
   data() {
     return {
       selectedMenu: 'palette',
-    };
+      palette: PaletteModule,
+      screen: ScreenModule
+    }; 
+  },
+  mounted() {
+    this.screen = this.$refs.screen.screen
   },
   props: {},
   methods: {},

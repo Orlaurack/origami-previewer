@@ -7,8 +7,8 @@
       type="range"
       ref="color-slider"
       class="form-range appearance-none w-full h-0 p-0"
-      :style="'background:'+dynamicBackground"
       min="0"
+      :style="'background:'+dynamicBackground"
       :max="max"
       :value="value"
     />
@@ -23,8 +23,8 @@ export default {
     const cs = this.$refs['color-slider']
     window.addEventListener('DOMMouseScroll', function(e) {
       if(e.target == cs){
-        console.log(cs)
-        this.value=(parseInt(this.value)-e.detail)
+        cs.value=(parseInt(cs.value)-e.detail)
+        cs.dispatchEvent(new Event('input', {bubbles:true}));
       }
     }, false)
   },
@@ -52,6 +52,7 @@ export default {
     change(event){
       this.$emit('input', parseInt(event.target.value))
     },
+
   },
 }
 </script>
@@ -68,8 +69,9 @@ export default {
   min-width: 160px;
 }
 .color .value{
-  float:right;
-  position: absolute;
+  min-width: 100%;
+  margin-left: -100%;
+  text-align: right;
   pointer-events: none;
 }
 .form-range{

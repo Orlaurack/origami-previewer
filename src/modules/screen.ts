@@ -9,6 +9,8 @@ export class Screen {
   readonly size: number
   solid: Solid // | other
   rotation: Rotation
+  palette: Palette
+  definition: number
   state: {
     play: boolean
     rotation: Coordinate,
@@ -23,9 +25,11 @@ export class Screen {
   ctx: CanvasRenderingContext2D
   readonly second= 1000
 
-  constructor(solid: Solid, ctx: CanvasRenderingContext2D) {
+  constructor(solid: Solid, palette: Palette,  ctx: CanvasRenderingContext2D) {
     this.solid = solid
     this.rotation = new Rotation()
+    this.palette = palette
+    this.definition = 500
     this.size = 1
     this.state = {
       play: false,
@@ -49,16 +53,14 @@ export class Screen {
     }*/
     const fov = 2.5
     const scale = 1
-    const definition = 500
     const precision = 3
     const digits = Math.pow(10, precision);
-
 
     const getCoord = (coordinate: Coordinate) => {
       const project = (v: number) => {
         const f = (1000 / fov) /
           (2000 / fov + coordinate.z) *
-          (scale * definition / 500);
+          (scale * this.definition / 500);
         return v * f;
       }
       const round = (v: number) => {
@@ -66,8 +68,8 @@ export class Screen {
       }
 
       return {
-        x: round(project(coordinate.x) + (definition / 2)),
-        y: round(project(coordinate.y) + (definition / 2))
+        x: round(project(coordinate.x) + (this.definition / 2)),
+        y: round(project(coordinate.y) + (this.definition / 2))
       };
     };
     const list: any[] = [];
@@ -87,23 +89,16 @@ export class Screen {
       this.ctx.clearRect(
         0,
         0,
-        definition,
-        definition
+        this.definition,
+        this.definition
       )
     }
-    this.ctx.strokeStyle = '#000000'
-    this.ctx.lineWidth = definition / 300
+    this.ctx.strokeStyle = '#18212f'
+    this.ctx.lineWidth = this.definition / 300
     
-    const star = this.solid.staredSolid
     let i = 0
-    let p = new Palette()
-    //p.changeColor(0, '#16a');
-    //p.changeColor(1, '#279');
-    //p.changeColor(2, '#388');
-    //p.changeColor(3, '#497');
-    //p.changeColor(4, '#5a6');
-    //p.theme = 'mixe 5';
-    const palette = p.getPalette()
+    const star = this.solid.staredSolid
+    const palette = this.palette.getPalette()
 
 
     for (const s in star) {
@@ -280,6 +275,12 @@ export class Screen {
         clearInterval(this.state.frameInterval);
       }
     }, this.second / this.state.fps);
+  }
+
+  setDirection(direction: number, speed: number){
+    
+    this.state.rotation = new Coordinate(Math.cos((direction-90) * Math.PI / 180)*speed, Math.sin((direction-90) * Math.PI / 180)*speed)
+
   }
 
 }

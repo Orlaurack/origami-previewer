@@ -1,6 +1,7 @@
 <template>
   <div 
     class="circle mx-4"
+    ref="circle"
     @mousedown="mouseDown"
     @mouseup="mouseUp"
     @mousemove="mouseMove" 
@@ -14,9 +15,10 @@
     </span>
     <div 
       class="slider-container" 
+      ref="slider-container"
       :style="'transform: rotate('+value+'deg)'"
     >
-      <div class="slider" :style="'background:'+foreground">
+      <div class="slider" ref="slider" :style="'background:'+foreground">
       </div>
     </div>
   </div>
@@ -27,28 +29,27 @@ export default {
   name: "circle-slider",
   created() {},
   mounted() {
-    this.container = document.querySelector('.circle');
-    this.slider = document.querySelector('.slider');
+    this.container = this.$refs['circle'];
+    this.slider = this.$refs['slider'];
     if(this.size == undefined){
       this.size = 100;
     }
-  },
-  data() {
-    return {
-      value: 0,
-      container: Element,
-      slider: Element,
-      mouseDowned: false,
-      lastAngle: 0
-    };
+
+    const sc = this.$refs['slider-container']
+    const updatev = this.updateValue
+    window.addEventListener('DOMMouseScroll', function(e) {
+      if(e.target == sc){
+        updatev(e.detail, true);
+      }
+    }, false)
   },
   computed: {
     
   },  
   props: {
-    value: {
+    initialValue: {
       type: Number,
-      default: 0
+      default: 0,
     },
     dynamicBackground: {
       type: String
@@ -64,36 +65,41 @@ export default {
       default: 160
     }
   },
+  data() {
+    return {
+      value: this.initialValue,
+      container: Element,
+      slider: Element,
+      mouseDowned: false,
+      lastAngle: 0
+    };
+  },
   methods: {
-    mouseDown(){this.mouseDowned = true},
+    mouseDown(e){this.mouseDowned = true; this.mouseMove(e)},
     mouseUp(){this.mouseDowned = false},
     mouseMove(e){
-      if(this.mouseDowned){  
+      if(this.mouseDowned){
         var radius = this.size/2;
         var deg = 0
         var elPos = { x: this.container.offsetLeft, y: this.container.offsetTop};
         var mPos = {x: e.clientX-elPos.x, y: e.clientY-elPos.y};
         var atan = Math.atan2(mPos.x-radius, mPos.y-radius);
         deg = -atan/(Math.PI/180) + 180; // final (0-360 positive) degrees from mouse position 
-        
-        const X = Math.round(radius* Math.sin(deg*Math.PI/180));    
-        const Y = Math.round(radius*  -Math.cos(deg*Math.PI/180));
-
-        var delta = 0;
-        var rawDelta = (deg-this.lastAngle)%360;
-        if(rawDelta < 180) {
-          delta = rawDelta;
-        } else {
-          delta = rawDelta-360.0;
-        }
-        this.lastAngle = deg;
-        this.value = Math.round(this.value + delta);
-        while(this.value<0)this.value+=360
-        while(this.value>360)this.value-=360
-        
-        this.$emit('input', this.value)
+        this.updateValue(deg)
       }
-    }      
+    },
+    updateValue(deg, addMode = false){
+      var newValue = deg;
+      if(addMode){
+        newValue = deg + this.value;
+      }
+      this.value = Math.round(newValue);
+      while(this.value<0)this.value+=360
+      while(this.value>360)this.value-=360
+      
+      this.$emit('input', this.value)
+    }
+
   },
 }
 </script>

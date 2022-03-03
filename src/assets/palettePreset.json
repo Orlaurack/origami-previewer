@@ -1,0 +1,38 @@
+[
+  {
+    "name": "discret",
+    "palette": [
+      "#232D3A", "#232D3A", "#232D3A", "#232D3A", "#232D3A",
+      "#232D3A", "#232D3A", "#232D3A", "#232D3A", "#232D3A",
+      "#232D3A", "#232D3A", "#232D3A", "#232D3A", "#232D3A",
+      "#232D3A", "#232D3A", "#232D3A", "#232D3A", "#232D3A",
+      "#232D3A", "#232D3A", "#232D3A", "#232D3A", "#232D3A",
+      "#232D3A", "#232D3A", "#232D3A", "#232D3A", "#232D3A"
+    ],
+    "type": "unicolor"
+  },
+  {
+    "name": "default",
+    "palette": [
+      "#1f9739", "#55770e", "#2a4c3b", "#561557", "#203582",
+      "#3b3ac8", "#0f71ac", "#2ab3c5", "#0fad7f", "#3ad953",
+      "#6ff97d", "#7fe238", "#90a60d", "#c5c638", "#9b5b0f",
+      "#d64d3b", "#9b1f3c", "#910783", "#c627ad", "#811ec8",
+      "#705af3", "#ab89f2", "#65a5f1", "#65e1c4", "#aaeba9",
+      "#d6b4c5", "#e0cb7e", "#f18f54", "#e169c7", "#f15381"
+    ],
+    "type": "default"
+  },
+  {
+    "name": "white",
+    "palette": [
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE"
+    ],
+    "type": "unicolor"
+  }
+]

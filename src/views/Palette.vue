@@ -1,13 +1,35 @@
 <template>
   <div class="palette text-4xl font-bold">
-    {{ menuTitle }}
     <div class="palette" >
+      {{ menuTitle }}
+      <div class="presets">
+        <button 
+          v-for="(preset, index) in palette.palettePreset"
+          :key="index"
+          :class="`preset text-base font-bold inline-block rounded-full px-2 mx-1 bg-white text-black'`" 
+          @click="selectPreset(preset.name)"
+        >
+        {{preset.name}}
+        </button>
+      </div>
+
+      <div class="themes">
+        <span 
+          v-for="(theme, index) in themes"
+          :key="index"
+          :class="`theme text-base inline-block rounded-full px-2 mx-1 ${palette.theme==theme?'selected bg-black text-white':'bg-white text-black'}`" 
+          @click="selectTheme(theme)"
+        >
+        {{theme}}
+        </span>
+      </div>
       <div 
         v-for="(color, index) in palette.colors"
+        v-show="index<palette.number"
         :key="index"
-        :class="`color p-1 inline-block rounded ${selectedColor==index?'selected':''}`" 
+        :class="`color inline-block rounded ${selectedColor==index?'selected':''}`" 
         :style="`color:${color}`"
-        @click="select(index)"
+        @click="selectColor(index)"
       >
       </div>
     <color-picker
@@ -29,20 +51,20 @@ export default {
   components: { ColorPicker, CircleSlider },
   name: "palette",
   created() {
-    this.palette = new Palette();
+    this.themes = this.palette.getModeList()
   },
   data() {
     return {
       menuTitle: 'palette menu',
+      themes: [],
       selectedColor: null,
-      palette: Palette
     };
   },
   props: {
-    propTest: String
+    palette: Palette
   },
   methods: {
-    select(index){
+    selectColor(index){
       if(index == this.selectedColor){
         this.selectedColor = null
       }else{
@@ -52,6 +74,15 @@ export default {
         }
       }
     },
+    selectTheme(theme){
+      this.selectedColor = null
+      this.palette.theme = theme
+    },
+    selectPreset(preset){
+      this.selectedColor = null
+      this.palette.changePreset(preset)
+
+    }
   },
 }
 </script>
@@ -70,11 +101,14 @@ export default {
   min-width: 0;
   background-clip: padding-box;
   transition: 300ms;
-  border: 10px currentColor solid;
-  margin: 4px;
+  border: 15px currentColor solid;
+  margin: 2.5px;
+  padding: 1px;
+  box-shadow: 0 0 3px 1px transparent;
+
 }
 .color.selected{
   background-color: white;
-  box-shadow: 0 0 0 2px white;
+  box-shadow: 0 0 3px 1px white;
 }
 </style>

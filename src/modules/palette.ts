@@ -1,39 +1,49 @@
+import palettePreset from '../assets/palettePreset.json'
+import modePreset from '../assets/modePreset.json'
+
 export class Palette {
   colors: string[]
   theme: string
   number: number
+  palettePreset: { name: string, type: string, palette: string[] }[]
+  modePreset: any
 
   constructor() {
-    this.colors = [
-      "#1f9739", "#55770e", "#2a4c3b", "#561557", "#203582", "#3b3ac8",
-      "#0f71ac", "#2ab3c5", "#0fad7f", "#3ad953", "#6ff97d", "#7fe238",
-      "#90a60d", "#c5c638", "#9b5b0f", "#d64d3b", "#9b1f3c", "#910783",
-      "#c627ad", "#811ec8", "#705af3", "#ab89f2", "#65a5f1", "#65e1c4",
-      "#aaeba9", "#d6b4c5", "#e0cb7e", "#f18f54", "#e169c7", "#f15381"
-    ]
+    this.palettePreset = palettePreset;
+    this.modePreset = modePreset;
+    this.colors = this.palettePreset[0].palette;
     this.theme = 'default'
     this.number = 30
+  }
+  changePreset(name:string){
+    const index = this.palettePreset.findIndex((p)=>p.name==name);
+    if(index != -1){
+      this.colors = this.palettePreset[index].palette
+      this.theme = this.palettePreset[index].type
+    }
   }
   changeColor(index: number, value: string){
     this.colors[index] = value;
   }
 
   getPalette(){
-    switch (this.theme) {
-      case 'unicolor': return this.getColors([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-      case 'mixe 5': return this.getColors([0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 1, 2, 3, 0, 4, 2, 0, 1, 4, 2, 3, 1, 4, 0, 3, 2, 4, 1, 0, 3])
-      
-      case 'default': 
-      default: 
-        return this.getColors([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29])
-    }
+    if (this.modePreset[this.theme])
+      return this.getColors(this.modePreset[this.theme])
+    else
+      return this.getColors(this.modePreset['default'])
+  }
+  getModeList(){
+    return Object.keys(this.modePreset)
   }
   private getColors(shema: number[]) {
+    let max = 0;
     const palette = []
     for (const index of shema) {
       palette.push(this.colors[index])
+      if(index > max) max = index
     }
-    return palette;
+    this.number = max+1
+    return palette
   } 
 
   

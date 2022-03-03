@@ -1,5 +1,13 @@
 <template>
-  <div class="option rounded pb-2 text-2xl font-bold" :style="`--red: ${red}; --green: ${green}; --blue:${blue}`">
+  <div 
+    class="option rounded pb-2 text-2xl font-bold"
+    :style="`
+    --red: ${red};
+    --green: ${green};
+    --blue:${blue};
+    --selection: ${contrastedColor}a;
+    `"
+  >
     <div class="flex-1 h-10 flex items-center justify-center menu flex space-x-4 p-1">
       <span :class="getMenuStyle('rgb')" @click="changeMode('rgb')">rgb</span>
       <span :class="getMenuStyle('hsl')" @click="changeMode('hsl')">hsl</span>
@@ -40,7 +48,7 @@
         :staticBackground="'conic-gradient(#f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00)'"
         :foreground="contrastedColor"
         :dynamicBackground="`conic-gradient(hsl(0, ${saturation}%, ${lightness}%), hsl(60, ${saturation}%, ${lightness}%), hsl(120, ${saturation}%, ${lightness}%), hsl(180, ${saturation}%, ${lightness}%), hsl(240, ${saturation}%, ${lightness}%), hsl(300, ${saturation}%, ${lightness}%), hsl(360, ${saturation}%, ${lightness}%))`"
-        :value="hue"
+        :initial-value="hue"
         :size="88"
         @input="hue=$event; hslUpdate()"
       ></circle-slider>
@@ -63,7 +71,7 @@
       ></slider>
     </div>
 
-    <div class="hex" v-if="mode=='hex'">
+    <div class="hex flex" v-if="mode=='hex'">
       <input class="
         form-control
         px-0
@@ -80,7 +88,13 @@
         :style="`color:${contrastedColor}; border-color: ${contrastedColor}`"
         type="text"
         v-model="hexInput"
+        :ref="'hex'"
         @input="checkHex" />
+        <ClipboardCopyIcon
+          class="inline p-0 h-10 w-10 cursor-pointer"
+          :style="`color: ${contrastedColor}`"
+          @click="clipboardCopy"
+        ></ClipboardCopyIcon>
     </div>
   </div>
 </template>
@@ -88,16 +102,18 @@
 <script>
 import CircleSlider from './CircleSlider.vue';
 import Slider from './Slider.vue';
+import { ClipboardCopyIcon, ClipboardIcon } from '@heroicons/vue/outline'
+
 export default {
-  components: { Slider, CircleSlider },
+  components: { Slider, CircleSlider, ClipboardIcon, ClipboardCopyIcon },
   name: "color-picker",
   created() {
     this.hexToColor(this.value)
-    if(localStorage.colorPickerMode){
-      this.mode = localStorage.colorPickerMode;
-    }
+    if(localStorage.colorPickerMode) this.mode = localStorage.colorPickerMode;
   },
-  mounted() {},
+  mounted() {
+    if(this.mode=='hex') this.setFocusHexInput()
+  },
   updated() {
     this.$emit('update', this.hexadecimal);
   },
@@ -157,10 +173,10 @@ export default {
     },
 
     changeMode(mode){
-      this.mode = mode;
-      localStorage.colorPickerMode = mode;
-
+      this.mode = mode
+      localStorage.colorPickerMode = mode
       this.hexInput = this.hexadecimal
+      if(mode=='hex') this.setFocusHexInput()
     },
     checkHex(e){
       const selection = e.target.selectionStart;
@@ -174,10 +190,10 @@ export default {
         }, 1);
       }
       this.hexInput = '#'+this.hexInput
-      this.hexToColor(this.hexInput)
+      this.hexToColor(this.hexInput, false)
       
     },
-    hexToColor(hex){
+    hexToColor(hex, updateHexInput = true){
       hex= hex.substring(1)
       
       let result = '';
@@ -212,23 +228,42 @@ export default {
       this.hue = Math.round(60 * h < 0 ? 60 * h + 360 : 60 * h)
       this.saturation = Math.round(100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0))
       this.lightness = Math.round((100 * (2 * l - s)) / 2)
-      this.updateInputs()
-    },
-    updateInputs(){
-
+      if(updateHexInput) this.hexInput = this.hexadecimal;
     },
     setValue(value){
+      this.setFocusHexInput()
       this.hexToColor(value);
+    },
+    clipboardCopy(){
+      navigator.clipboard.writeText(this.hexInput);
+    },
+    setFocusHexInput(){
+      setTimeout(() => {
+        if(this.$refs.hex){
+          this.$refs.hex.focus()
+          this.$refs.hex.setSelectionRange(0, 7)
+        }
+      }, 1);
     }
   },
 }
 </script>
+<style>
+
+.option *::selection{
+  color: rgb(var(--red), var(--green), var(--blue)) !important;
+  background: var(--selection) !important;
+}
+
+</style>
 <style scoped>
 .option{
   width: 100%;
   background-color: rgb(var(--red), var(--green), var(--blue));
   transition: 300ms background-color;
 }
+  
+ 
 .color{
   display: flex;
   flex-direction: row;
