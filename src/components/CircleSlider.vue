@@ -43,6 +43,9 @@ export default {
       }
     }, false)
   },
+  updated() {
+    this.value = this.initialValue
+  },
   computed: {
     
   },  

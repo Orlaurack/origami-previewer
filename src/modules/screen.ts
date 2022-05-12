@@ -11,6 +11,7 @@ export class Screen {
   rotation: Rotation
   palette: Palette
   definition: number
+  selectedColor: number | null
   state: {
     play: boolean
     rotation: Coordinate,
@@ -31,6 +32,7 @@ export class Screen {
     this.palette = palette
     this.definition = 500
     this.size = 1
+    this.selectedColor = null
     this.state = {
       play: false,
       rotation: new Coordinate(0.3, 0),
@@ -73,8 +75,11 @@ export class Screen {
       };
     };
     const list: any[] = [];
-    const draw = (a: ()=>void, z: number) => {
-      const o = { action: a, z };
+    const draw = (a: ()=>void, z: number, selected: boolean) => {
+      if(selected){
+        z-=3
+      }
+      const o = { action: a, z, selected };
       let stop = true;
       let index = 0;
       while (stop) {
@@ -93,7 +98,6 @@ export class Screen {
         this.definition
       )
     }
-    this.ctx.strokeStyle = '#18212f'
     this.ctx.lineWidth = this.definition / 300
     
     let i = 0
@@ -105,6 +109,7 @@ export class Screen {
       if (star.hasOwnProperty(s)) {
         const module = star[s];
         //color = colorManagerService.showedColors[Math.floor((i++) / repetition)].color;
+        const selected = this.palette.modePreset[this.palette.theme][i] == this.selectedColor
         const color = palette[i++]
 
         let c = { x: 0, y: 0 };
@@ -134,7 +139,7 @@ export class Screen {
           this.ctx.closePath();
           this.ctx.stroke();
           this.ctx.fill();
-        }, (module.cp).z);
+        }, (module.cp).z, selected);
         draw(() => {
           this.ctx.fillStyle = color;
           this.ctx.lineCap = 'butt';
@@ -164,7 +169,7 @@ export class Screen {
           this.ctx.closePath();
           this.ctx.stroke();
           this.ctx.fill();
-        }, (module.cn).z);
+        }, (module.cn).z, selected);
         draw(() => {
           this.ctx.fillStyle = color;
           this.ctx.lineCap = 'butt';
@@ -187,7 +192,7 @@ export class Screen {
           this.ctx.closePath();
           this.ctx.stroke();
           this.ctx.fill()
-        }, (module.fp).z);
+        }, (module.fp).z, selected);
         draw(() => {
           this.ctx.fillStyle = color;
           this.ctx.lineCap = 'butt';
@@ -210,7 +215,7 @@ export class Screen {
           this.ctx.closePath();
           this.ctx.stroke();
           this.ctx.fill();
-        }, (module.fn).z);
+        }, (module.fn).z, selected);
         draw(() => {
           this.ctx.fillStyle = color;
           this.ctx.lineCap = 'butt';
@@ -222,7 +227,7 @@ export class Screen {
           this.ctx.closePath();
           this.ctx.stroke();
           this.ctx.fill();
-        }, (module.kp).z);
+        }, (module.kp).z, selected);
         draw(() => {
           this.ctx.fillStyle = color;
           this.ctx.lineCap = 'butt';
@@ -234,10 +239,12 @@ export class Screen {
           this.ctx.closePath();
           this.ctx.stroke();
           this.ctx.fill();
-        }, (module.kn).z);
+        }, (module.kn).z, selected);
       }
     }
     for (const action of list) {
+      if(action.selected) this.ctx.strokeStyle = '#fff';
+      else this.ctx.strokeStyle = '#000'
       action.action();
     }
     // if (gifMode) {

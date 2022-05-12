@@ -34,5 +34,17 @@
       "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE"
     ],
     "type": "unicolor"
+  },
+  {
+    "name": "gradient",
+    "palette": [
+      "#face6e", "#f8b268", "#ef9767", "#e17e69", "#cd686d",
+      "#b5566f", "#98486e", "#783d6b", "#573363", "#342a58",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE",
+      "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE", "#FFF5EE"
+    ],
+    "type": "gradient 10"
   }
 ]

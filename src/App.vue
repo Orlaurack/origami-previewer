@@ -1,15 +1,16 @@
 <template>
-  <div class="app bg-gray-800">
+  <div class="app">
+    <Background></Background>
     <Screen prop-test="sdilfhads" :palette="palette" ref="screen">{{}}</Screen>
     <div class="content overflow-hidden">
       <Menu @select="selectedMenu=$event"></Menu>
-      <Palette class="overflow-auto" v-if="selectedMenu=='palette'" :palette="palette"></Palette>
+      <Palette class="overflow-auto" v-if="selectedMenu=='palette'" :palette="palette" :screen="this.screen"></Palette>
       <Option class="overflow-auto" v-if="selectedMenu=='option'" :screen="this.screen"></Option>
       <Download class="overflow-auto" v-if="selectedMenu=='download'" title="download menu"></Download>
     </div>
   </div>
 </template>
-<script setup lang="ts">
+<script setup>
 import Screen from './components/Screen.vue'
 import Menu from './components/Menu.vue'
 import Palette from './views/Palette.vue'
@@ -17,10 +18,11 @@ import Option from './views/Option.vue'
 import Download from './views/Download.vue'
 import { Palette as PaletteModule } from './modules/palette'
 import { Screen as ScreenModule } from './modules/screen'
+import Background from './views/Background.vue'
 
 
 </script>
-<script lang="ts">
+<script>
 
 export default {
   name: "app",
@@ -30,6 +32,7 @@ export default {
     Palette,
     Option,
     Download,
+    Background
   ],
   created() {
     this.palette = new PaletteModule()
@@ -42,7 +45,9 @@ export default {
     }; 
   },
   mounted() {
-    this.screen = this.$refs.screen.screen
+    if(this.$refs.screen){
+      this.screen = this.$refs.screen.screen
+    }
   },
   props: {},
   methods: {},

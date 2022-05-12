@@ -8,11 +8,22 @@
     --selection: ${contrastedColor}a;
     `"
   >
-    <div class="flex-1 h-10 flex items-center justify-center menu flex space-x-4 p-1">
+    <RefreshIcon 
+      class="inline p-2 h-10 w-10 cursor-pointer float-left"
+      :style="`color: ${contrastedColor}`"
+      @click="random"
+    ></RefreshIcon>
+    <XIcon 
+      class="inline p-2 h-10 w-10 cursor-pointer float-right"
+      :style="`color: ${contrastedColor}`"
+      @click="close"
+    ></XIcon>
+    <div class="flex-1 h-16 block relative w-auto flex items-center justify-center menu flex space-x-4 p-4">
       <span :class="getMenuStyle('rgb')" @click="changeMode('rgb')">rgb</span>
       <span :class="getMenuStyle('hsl')" @click="changeMode('hsl')">hsl</span>
       <span :class="getMenuStyle('hex')" @click="changeMode('hex')">hex</span>
     </div>
+    
     <span class="hex rounded-full w-0 text-xl" :style="`color:${hexadecimal}; background-color: ${contrastedColor}`">{{hexadecimal}}</span>
     <div class="rgb" v-show="mode=='rgb'">
       <slider
@@ -102,10 +113,10 @@
 <script>
 import CircleSlider from './CircleSlider.vue';
 import Slider from './Slider.vue';
-import { ClipboardCopyIcon, ClipboardIcon } from '@heroicons/vue/outline'
+import { ClipboardCopyIcon, RefreshIcon, XIcon } from '@heroicons/vue/outline'
 
 export default {
-  components: { Slider, CircleSlider, ClipboardIcon, ClipboardCopyIcon },
+  components: { Slider, CircleSlider, ClipboardCopyIcon, RefreshIcon, XIcon },
   name: "color-picker",
   created() {
     this.hexToColor(this.value)
@@ -215,8 +226,8 @@ export default {
       let g = this.green/255
       let b = this.blue/255
 
-      const l = Math.max(r, g, b);
-      const s = l - Math.min(r, g, b);
+      const l = Math.max(r, g, b)
+      const s = l - Math.min(r, g, b)
       const h = s
         ? l === r
           ? (g - b) / s
@@ -228,14 +239,14 @@ export default {
       this.hue = Math.round(60 * h < 0 ? 60 * h + 360 : 60 * h)
       this.saturation = Math.round(100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0))
       this.lightness = Math.round((100 * (2 * l - s)) / 2)
-      if(updateHexInput) this.hexInput = this.hexadecimal;
+      if(updateHexInput) this.hexInput = this.hexadecimal
     },
     setValue(value){
       this.setFocusHexInput()
-      this.hexToColor(value);
+      this.hexToColor(value)
     },
     clipboardCopy(){
-      navigator.clipboard.writeText(this.hexInput);
+      navigator.clipboard.writeText(this.hexInput)
     },
     setFocusHexInput(){
       setTimeout(() => {
@@ -244,6 +255,12 @@ export default {
           this.$refs.hex.setSelectionRange(0, 7)
         }
       }, 1);
+    },
+    random(){
+      this.hexToColor('#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'))
+    },
+    close(){
+      this.$emit('close');
     }
   },
 }
