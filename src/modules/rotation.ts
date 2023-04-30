@@ -14,6 +14,7 @@ export class Rotation {
     if (rotation === undefined) {
       rotation = this.lastRotation[0];
     }
+
     if(mouseDowned){
       rotation.x *= inertia
       rotation.y *= inertia

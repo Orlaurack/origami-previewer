@@ -31,6 +31,7 @@ export default {
   created() {
     this.speed = 100*Math.sqrt(Math.pow(this.screen.state.rotation.x, 2)+Math.pow(this.screen.state.rotation.y, 2))
     this.direction = ((Math.atan2(this.screen.state.rotation.y,  this.screen.state.rotation.x) / Math.PI * 180)+450)%360
+		
   },
   data() {
     return {

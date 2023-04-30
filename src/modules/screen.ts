@@ -30,7 +30,7 @@ export class Screen {
     this.solid = solid
     this.rotation = new Rotation()
     this.palette = palette
-    this.definition = 500
+    this.definition = 512
     this.size = 1
     this.selectedColor = null
     this.state = {
@@ -38,7 +38,7 @@ export class Screen {
       rotation: new Coordinate(0.3, 0),
       frameInterval: null,
       firstFrame: true,
-      fps: 24,
+      fps: 30,
       mouse: {
         position: new Coordinate(0, 0),
         downed: false
@@ -47,14 +47,18 @@ export class Screen {
     this.ctx = ctx
   }
 
-  generateCanvas() {
-    /*if (gifMode) {
-      ctx = document.createElement("canvas").getContext('2d');
-      ctx.canvas.width = solidSettingsService.definition;
-      ctx.canvas.height = solidSettingsService.definition;
-    }*/
-    const fov = 2.5
-    const scale = 1
+  generateCanvas(downloadMode = false) {
+		let ctx = null
+		let scale = 1
+		let fov = 2.3
+		if (downloadMode) {
+			ctx = this.ctx
+			if(ctx){
+				ctx.canvas.width = 512;
+				ctx.canvas.height = 512;
+			}
+			scale = 1.2
+    }
     const precision = 3
     const digits = Math.pow(10, precision);
 
@@ -247,9 +251,9 @@ export class Screen {
       else this.ctx.strokeStyle = '#000'
       action.action();
     }
-    // if (gifMode) {
-    //   return ctx;
-    // }
+    if (downloadMode) {
+      return this.ctx;
+    }
   }
 
   updateSolid(solidName: string) {
@@ -262,11 +266,11 @@ export class Screen {
   play() {
     this.state.play = true;
     this.state.frameInterval = setInterval(() => {
-      if (this.state.mouse.downed) {
+      if (false){//this.state.mouse.downed) {
         this.state.mouse.position.x *= 1;
         this.state.mouse.position.y *= 1;
       } else {
-        this.state.mouse.position.x += this.state.rotation.x;
+        this.state.mouse.position.x += this.state.rotation.x-0.1;
         this.state.mouse.position.y += this.state.rotation.y;
       }
       
@@ -285,9 +289,7 @@ export class Screen {
   }
 
   setDirection(direction: number, speed: number){
-    
     this.state.rotation = new Coordinate(Math.cos((direction-90) * Math.PI / 180)*speed, Math.sin((direction-90) * Math.PI / 180)*speed)
-
   }
 
 }

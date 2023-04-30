@@ -1,0 +1,978 @@
+<html data-lt-installed="true" lang="en"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style type="text/css" id="dark-mode-custom-style" lang="en"></style><style type="text/css" id="dark-mode-native-style" lang="en"></style><style type="text/css" id="dark-mode-native-sheet" lang="en"></style><head>
+    <script type="module" src="/origami-previewer/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" href="/origami-previewer/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+  <style type="text/css">
+.circle[data-v-1518ecfe] {
+  --size: 100px;
+
+  align-content: center;
+  position: relative;
+  width:var(--size);
+  height:var(--size);
+  background:transparent;
+  border-radius: 100%;
+  background-clip: padding-box;
+}
+.slider-container[data-v-1518ecfe]{
+  width:var(--size);
+  height:var(--size);
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  z-index: 90;
+}
+.slider[data-v-1518ecfe] {
+  position:absolute;
+  margin-top: .25em;
+  height:.5em;
+  width: .1em;
+}
+.label[data-v-1518ecfe]{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--size) - .5em);
+  height: calc(var(--size) - .5em);
+  line-height: calc(var(--size) - .5em);
+  border-radius: 100%;
+  margin:0px;
+}
+</style><style type="text/css">
+@media screen and (orientation:portrait) {
+*[data-v-59c35ec8]{
+    --screen-side: 512px;
+    --screen-side-max: 60vw;
+}
+}
+@media screen and (orientation:landscape) {
+*[data-v-59c35ec8]{
+    --screen-side: 512px;
+    --screen-side-max: 60vh;
+}
+}
+.screen[data-v-59c35ec8]{
+  max-width: var(--screen-side-max);
+  max-height: var(--screen-side-max);
+  height: var(--screen-side);
+  width: var(--screen-side);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style><style type="text/css">
+menu[data-v-9bcc0be2]{
+  width: 100%;
+}
+</style><style type="text/css">
+.color{
+  display: flex;
+  flex-direction: row;
+  padding: .5em 0;
+  height: 1.5em;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 160px;
+}
+.color .value{
+  min-width: 100%;
+  margin-left: -100%;
+  text-align: right;
+  pointer-events: none;
+}
+.form-range{
+  min-height: 1em;
+  padding: 0.25em;
+  background-color: transparent;
+}
+.form-range::-moz-range-thumb{
+  width: 0;
+  height: calc(1em - 1px);
+  border:currentColor .5px solid;
+  background-color: transparent;
+  padding:0;
+}
+</style><style type="text/css">
+.option *::-moz-selection{
+  color: rgb(var(--red), var(--green), var(--blue)) !important;
+  background: var(--selection) !important;
+}
+.option *::selection{
+  color: rgb(var(--red), var(--green), var(--blue)) !important;
+  background: var(--selection) !important;
+}
+
+</style><style type="text/css">
+.option[data-v-0684bb51]{
+  width: 100%;
+  background-color: rgb(var(--red), var(--green), var(--blue));
+  transition: 300ms background-color;
+}
+.color[data-v-0684bb51]{
+  display: flex;
+  flex-direction: row;
+  padding: .5em 0;
+  align-items: center;
+  justify-content: flex-end;
+}
+.color .value[data-v-0684bb51]{
+  float:right;
+  position: absolute;
+  pointer-events: none;
+}
+.form-range[data-v-0684bb51]{
+  height: 1em;
+  padding: 0.25em;
+  background-color: transparent;
+}
+.form-range[data-v-0684bb51]::-moz-range-thumb{
+  width: 0;
+  height: calc(2em - 2px);
+  border:black 1px solid;
+  background-color: transparent;
+  padding:0;
+}
+.hue[data-v-0684bb51]{
+  float:left
+}
+@media screen and (max-width: 320px) {
+.hue[data-v-0684bb51]{
+    float:none;
+    margin-left: auto;
+    margin-right: auto;
+}
+}
+.hex[data-v-0684bb51]{
+  min-width: 120px;
+  display: block;
+  margin: 5px auto 20px;
+}
+</style><style type="text/css">
+.palette[data-v-e2d9909e]{
+  background-color: transparent;
+  width: 100%;
+  min-width: 200px;
+  min-height: 200px;
+}
+.color[data-v-e2d9909e]{
+  background-color: currentColor;
+  height: 0;
+  width: 0;
+  min-width: 0;
+  background-clip: padding-box;
+  transition: 300ms;
+  border: 15px currentColor solid;
+  margin: 2.5px;
+  padding: 1px;
+  box-shadow: 0 0 3px 1px transparent;
+}
+.color.selected[data-v-e2d9909e]{
+  background-color: white;
+  box-shadow: 0 0 3px 1px white;
+}
+</style><style type="text/css">
+.option[data-v-6f2958af]{
+  width: 100%;
+  min-width: 200px;
+  min-height: 200px;
+}
+</style><style type="text/css">.download[data-v-760dd6c2] {
+  width: 100%;
+  min-width: 200px;
+  min-height: 200px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 0;
+}</style><style type="text/css">
+.background-container[data-v-d0e18030]{
+  overflow: visible;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: #fff;
+  z-index: -1;
+}
+.background[data-v-d0e18030]{
+  position : absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  cursor: none;
+}
+.point[data-v-d0e18030]{
+  width: 2px;
+  height:2px;
+  border-radius: 100%;
+  border: #fff solid 2px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.triangle[data-v-d0e18030]{
+	transition: 10000ms
+}
+
+</style><style type="text/css">
+@media screen and (orientation:portrait) {
+*{
+    --orientation: column;
+}
+}
+@media screen and (orientation:landscape) {
+*{
+    --orientation: row;
+}
+}
+body{
+  margin: 0;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.app{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: var(--orientation);
+
+  align-items: center;
+  justify-content: center;
+}
+.content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.screen{
+	transition: 1000ms;
+	opacity: 0;
+	max-width: 512px;
+	max-height: 512px;
+}
+.screen.visible{
+	opacity: 1
+}
+</style><style type="text/css">/*
+! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
+*//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+*/
+
+html {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+Ensure the default browser behavior of the `hidden` attribute.
+*/
+
+[hidden] {
+  display: none;
+}
+
+*, ::before, ::after {
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+
+  .container {
+    max-width: 1536px;
+  }
+}
+.visible {
+  visibility: visible;
+}
+.relative {
+  position: relative;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.m-4 {
+  margin: 1rem;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+.mb-0 {
+  margin-bottom: 0px;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
+.flex {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+.h-10 {
+  height: 2.5rem;
+}
+.h-16 {
+  height: 4rem;
+}
+.h-0 {
+  height: 0px;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.w-auto {
+  width: auto;
+}
+.w-0 {
+  width: 0px;
+}
+.w-full {
+  width: 100%;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.flex-shrink {
+  flex-shrink: 1;
+}
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.resize {
+  resize: both;
+}
+.appearance-none {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.border {
+  border-width: 1px;
+}
+.border-solid {
+  border-style: solid;
+}
+.bg-transparent {
+  background-color: transparent;
+}
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.bg-gray-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.p-0 {
+  padding: 0px;
+}
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+.text-center {
+  text-align: center;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+.drop-shadow {
+  --tw-drop-shadow: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.transition {
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover\:bg-gray-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.hover\:text-gray-900:hover {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+.hover\:hover\:text-gray-200:hover:hover {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.active\:bg-gray-900:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+.active\:text-gray-200:active {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}</style></head>
+  <body>
+    <div id="app" data-v-app=""><div class="app"><div class="background-container center" data-v-d0e18030=""><!--span v-for="(point, index) of points" :key="index" class="point" :style="`top:${point.y}px; left:${point.x}px;`"></span--><svg class="background" style="" data-v-d0e18030=""><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1367.3px 858.906px 0px;" fill="rgb(184, 194, 129)" stroke="rgb(184, 194, 129)" stroke-width="2px" id="0" points="1278.1134368158484,862.1978506404738 1400,852.8571837673089 1400,781.2850755459699" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1385.33px 711.7px 0px;" fill="rgb(189, 201, 126)" stroke="rgb(189, 201, 126)" stroke-width="2px" id="1" points="1319.5817573541237,740.4432738188115 1400,689.6504201993829 1400,620.4467982225858" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1389.28px 552.144px 0px;" fill="rgb(199, 211, 120)" stroke="rgb(199, 211, 120)" stroke-width="2px" id="2" points="1328.6859301089744,569.0701696686674 1400,567.6809476562731 1400,399.5401705654749" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1382.85px 374.654px 0px;" fill="rgb(200, 211, 107)" stroke="rgb(200, 211, 107)" stroke-width="2px" id="3" points="1313.8950012233013,381.59967635083507 1400,378.08703914865714 1400,306.050071593602" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1381.55px 165.38px 0px;" fill="rgb(197, 203, 84)" stroke="rgb(197, 203, 84)" stroke-width="2px" id="4" points="1310.8907219449688,200.25131948671856 1400,134.63936234896065 1400,136.45224369486385" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1407.35px 59.3271px 0px;" fill="rgb(216, 219, 84)" stroke="rgb(216, 219, 84)" stroke-width="2px" id="5" points="1400,0 1400,136.45224369486385 1310.6924012221032,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1328.59px 101.647px 0px;" fill="rgb(212, 218, 92)" stroke="rgb(212, 218, 92)" stroke-width="2px" id="6" points="1218.8526131385727,97.33529029270133 1400,136.45224369486385 1310.6924012221032,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1402.63px 909.95px 0px;" fill="rgb(192, 201, 133)" stroke="rgb(192, 201, 133)" stroke-width="2px" id="7" points="1400,852.8571837673089 1400,952.6279441628825 1278.1134368158484,862.1978506404738" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1320.12px 953.328px 0px;" fill="rgb(196, 207, 138)" stroke="rgb(196, 207, 138)" stroke-width="2px" id="8" points="1210.2336559942446,952.6279441628825 1400,952.6279441628825 1278.1134368158484,862.1978506404738" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1340.97px 824.426px 0px;" fill="rgb(187, 201, 136)" stroke="rgb(187, 201, 136)" stroke-width="2px" id="9" points="1400,781.2850755459699 1278.1134368158484,862.1978506404738 1218.3278276900999,758.0919176230371" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1245.96px 873.557px 0px;" fill="rgb(193, 210, 144)" stroke="rgb(193, 210, 144)" stroke-width="2px" id="10" points="1181.4923419697343,894.2860521595445 1278.1134368158484,862.1978506404738 1218.3278276900999,758.0919176230371" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1408.64px 746.848px 0px;" fill="rgb(184, 195, 126)" stroke="rgb(184, 195, 126)" stroke-width="2px" id="11" points="1400,689.6504201993829 1400,781.2850755459699 1319.5817573541237,740.4432738188115" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1329.65px 776.605px 0px;" fill="rgb(190, 204, 136)" stroke="rgb(190, 204, 136)" stroke-width="2px" id="12" points="1218.3278276900999,758.0919176230371 1400,781.2850755459699 1319.5817573541237,740.4432738188115" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1358.78px 684.782px 0px;" fill="rgb(200, 216, 138)" stroke="rgb(200, 216, 138)" stroke-width="2px" id="13" points="1400,620.4467982225858 1319.5817573541237,740.4432738188115 1216.8465268414398,642.3278966930043" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1276.81px 714.176px 0px;" fill="rgb(203, 222, 147)" stroke="rgb(203, 222, 147)" stroke-width="2px" id="14" points="1211.463627737206,688.0513638817989 1319.5817573541237,740.4432738188115 1216.8465268414398,642.3278966930043" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1409.95px 599.051px 0px;" fill="rgb(196, 208, 124)" stroke="rgb(196, 208, 124)" stroke-width="2px" id="15" points="1400,567.6809476562731 1400,620.4467982225858 1328.6859301089744,569.0701696686674" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1330.32px 631.506px 0px;" fill="rgb(204, 221, 137)" stroke="rgb(204, 221, 137)" stroke-width="2px" id="16" points="1216.8465268414398,642.3278966930043 1400,620.4467982225858 1328.6859301089744,569.0701696686674" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1374.41px 490.916px 0px;" fill="rgb(206, 220, 126)" stroke="rgb(206, 220, 126)" stroke-width="2px" id="17" points="1400,399.5401705654749 1328.6859301089744,569.0701696686674 1297.360615536315,481.4889516777344" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1291.83px 547.363px 0px;" fill="rgb(213, 232, 140)" stroke="rgb(213, 232, 140)" stroke-width="2px" id="18" points="1210.060553974899,529.3678393927074 1328.6859301089744,569.0701696686674 1297.360615536315,481.4889516777344" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1407.81px 393.403px 0px;" fill="rgb(200, 212, 111)" stroke="rgb(200, 212, 111)" stroke-width="2px" id="19" points="1400,378.08703914865714 1400,399.5401705654749 1313.8950012233013,381.59967635083507" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1363.19px 438.36px 0px;" fill="rgb(207, 221, 122)" stroke="rgb(207, 221, 122)" stroke-width="2px" id="20" points="1297.360615536315,481.4889516777344 1400,399.5401705654749 1313.8950012233013,381.59967635083507" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1359.82px 331.651px 0px;" fill="rgb(206, 219, 111)" stroke="rgb(206, 219, 111)" stroke-width="2px" id="21" points="1400,306.050071593602 1313.8950012233013,381.59967635083507 1241.0908305695075,225.4434878027211" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1282.12px 329.666px 0px;" fill="rgb(211, 228, 121)" stroke="rgb(211, 228, 121)" stroke-width="2px" id="22" points="1221.2789677550193,301.48346713536574 1313.8950012233013,381.59967635083507 1241.0908305695075,225.4434878027211" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1407.38px 220.626px 0px;" fill="rgb(193, 200, 88)" stroke="rgb(193, 200, 88)" stroke-width="2px" id="23" points="1400,134.63936234896065 1400,306.050071593602 1310.8907219449688,200.25131948671856" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1338.28px 260.106px 0px;" fill="rgb(202, 214, 102)" stroke="rgb(202, 214, 102)" stroke-width="2px" id="24" points="1241.0908305695075,225.4434878027211 1400,306.050071593602 1310.8907219449688,200.25131948671856" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1355.29px 160.499px 0px;" fill="rgb(206, 214, 94)" stroke="rgb(206, 214, 94)" stroke-width="2px" id="25" points="1400,136.45224369486385 1310.8907219449688,200.25131948671856 1218.8526131385727,97.33529029270133" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1247.63px 179.566px 0px;" fill="rgb(205, 219, 106)" stroke="rgb(205, 219, 106)" stroke-width="2px" id="26" points="1152.3735869242346,180.30526039323675 1310.8907219449688,200.25131948671856 1218.8526131385727,97.33529029270133" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1268.9px 42.3197px 0px;" fill="rgb(205, 214, 94)" stroke="rgb(205, 214, 94)" stroke-width="2px" id="27" points="1310.6924012221032,0 1218.8526131385727,97.33529029270133 1166.7486359229727,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1200.04px 88.625px 0px;" fill="rgb(203, 215, 102)" stroke="rgb(203, 215, 102)" stroke-width="2px" id="28" points="1152.3208978419243,106.50215041677889 1218.8526131385727,97.33529029270133 1166.7486359229727,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1253.12px 918.661px 0px;" fill="rgb(194, 208, 142)" stroke="rgb(194, 208, 142)" stroke-width="2px" id="29" points="1278.1134368158484,862.1978506404738 1210.2336559942446,952.6279441628825 1181.4923419697343,894.2860521595445" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1214.6px 957.979px 0px;" fill="rgb(190, 205, 140)" stroke="rgb(190, 205, 140)" stroke-width="2px" id="30" points="1189.507298152339,952.6279441628825 1210.2336559942446,952.6279441628825 1181.4923419697343,894.2860521595445" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1211.3px 834.412px 0px;" fill="rgb(192, 211, 147)" stroke="rgb(192, 211, 147)" stroke-width="2px" id="31" points="1218.3278276900999,758.0919176230371 1181.4923419697343,894.2860521595445 1158.477813025298,800.3089323824594" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1148.34px 897.03px 0px;" fill="rgb(190, 210, 147)" stroke="rgb(190, 210, 147)" stroke-width="2px" id="32" points="1073.5283766886362,902.1137680913324 1181.4923419697343,894.2860521595445 1158.477813025298,800.3089323824594" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1279.01px 751.255px 0px;" fill="rgb(198, 216, 145)" stroke="rgb(198, 216, 145)" stroke-width="2px" id="33" points="1319.5817573541237,740.4432738188115 1218.3278276900999,758.0919176230371 1211.463627737206,688.0513638817989" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1208.97px 777.283px 0px;" fill="rgb(194, 215, 149)" stroke="rgb(194, 215, 149)" stroke-width="2px" id="34" points="1158.477813025298,800.3089323824594 1218.3278276900999,758.0919176230371 1211.463627737206,688.0513638817989" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1224.24px 673.076px 0px;" fill="rgb(208, 230, 153)" stroke="rgb(208, 230, 153)" stroke-width="2px" id="35" points="1216.8465268414398,642.3278966930043 1211.463627737206,688.0513638817989 1162.3103707923751,653.0874534716776" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1187.43px 693.582px 0px;" fill="rgb(205, 229, 155)" stroke="rgb(205, 229, 155)" stroke-width="2px" id="36" points="1132.1778746574867,689.4908164540248 1211.463627737206,688.0513638817989 1162.3103707923751,653.0874534716776" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1282.12px 603.415px 0px;" fill="rgb(213, 234, 147)" stroke="rgb(213, 234, 147)" stroke-width="2px" id="37" points="1328.6859301089744,569.0701696686674 1216.8465268414398,642.3278966930043 1210.060553974899,529.3678393927074" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1209.79px 639.944px 0px;" fill="rgb(213, 237, 154)" stroke="rgb(213, 237, 154)" stroke-width="2px" id="38" points="1162.3103707923751,653.0874534716776 1216.8465268414398,642.3278966930043 1210.060553974899,529.3678393927074" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1257.82px 507.12px 0px;" fill="rgb(219, 241, 147)" stroke="rgb(219, 241, 147)" stroke-width="2px" id="39" points="1297.360615536315,481.4889516777344 1210.060553974899,529.3678393927074 1156.6608809439535,466.5603491085572" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1152.43px 542.901px 0px;" fill="rgb(219, 247, 159)" stroke="rgb(219, 247, 159)" stroke-width="2px" id="40" points="1054.9692098000207,563.7840448276131 1210.060553974899,529.3678393927074 1156.6608809439535,466.5603491085572" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1312.33px 418.949px 0px;" fill="rgb(214, 232, 129)" stroke="rgb(214, 232, 129)" stroke-width="2px" id="41" points="1313.8950012233013,381.59967635083507 1297.360615536315,481.4889516777344 1221.2789677550193,301.48346713536574" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1243.96px 455.889px 0px;" fill="rgb(219, 240, 140)" stroke="rgb(219, 240, 140)" stroke-width="2px" id="42" points="1156.6608809439535,466.5603491085572 1297.360615536315,481.4889516777344 1221.2789677550193,301.48346713536574" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1232.18px 273.28px 0px;" fill="rgb(209, 229, 125)" stroke="rgb(209, 229, 125)" stroke-width="2px" id="43" points="1241.0908305695075,225.4434878027211 1221.2789677550193,301.48346713536574 1114.9276341378368,304.8528835406638" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1164.52px 320.275px 0px;" fill="rgb(211, 235, 136)" stroke="rgb(211, 235, 136)" stroke-width="2px" id="44" points="1085.4825726422757,333.53150827103696 1221.2789677550193,301.48346713536574 1114.9276341378368,304.8528835406638" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1276.57px 211.216px 0px;" fill="rgb(202, 216, 107)" stroke="rgb(202, 216, 107)" stroke-width="2px" id="45" points="1310.8907219449688,200.25131948671856 1241.0908305695075,225.4434878027211 1152.3735869242346,180.30526039323675" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1191.37px 256.695px 0px;" fill="rgb(202, 222, 119)" stroke="rgb(202, 222, 119)" stroke-width="2px" id="46" points="1114.9276341378368,304.8528835406638 1241.0908305695075,225.4434878027211 1152.3735869242346,180.30526039323675" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1197.97px 136.148px 0px;" fill="rgb(204, 220, 109)" stroke="rgb(204, 220, 109)" stroke-width="2px" id="47" points="1218.8526131385727,97.33529029270133 1152.3735869242346,180.30526039323675 1152.3208978419243,106.50215041677889" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1154.67px 159.273px 0px;" fill="rgb(202, 220, 114)" stroke="rgb(202, 220, 114)" stroke-width="2px" id="48" points="1119.257853984466,150.5225810229591 1152.3735869242346,180.30526039323675 1152.3208978419243,106.50215041677889" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1160.76px 46.3053px 0px;" fill="rgb(193, 206, 101)" stroke="rgb(193, 206, 101)" stroke-width="2px" id="49" points="1166.7486359229727,0 1152.3208978419243,106.50215041677889 1052.0315258398625,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1107.45px 67.4531px 0px;" fill="rgb(190, 206, 106)" stroke="rgb(190, 206, 106)" stroke-width="2px" id="50" points="1044.130783102245,48.64001053757147 1152.3208978419243,106.50215041677889 1052.0315258398625,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1186.45px 933.747px 0px;" fill="rgb(188, 205, 142)" stroke="rgb(188, 205, 142)" stroke-width="2px" id="51" points="1181.4923419697343,894.2860521595445 1189.507298152339,952.6279441628825 1073.5283766886362,902.1137680913324" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1138.37px 959.113px 0px;" fill="rgb(182, 200, 139)" stroke="rgb(182, 200, 139)" stroke-width="2px" id="52" points="1070.9055924454308,952.6279441628825 1189.507298152339,952.6279441628825 1073.5283766886362,902.1137680913324" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1126.77px 850.614px 0px;" fill="rgb(189, 213, 150)" stroke="rgb(189, 213, 150)" stroke-width="2px" id="53" points="1158.477813025298,800.3089323824594 1073.5283766886362,902.1137680913324 1078.69564785842,761.9667487515816" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1038.44px 875.521px 0px;" fill="rgb(184, 210, 150)" stroke="rgb(184, 210, 150)" stroke-width="2px" id="54" points="955.3206272672356,857.5965505461726 1073.5283766886362,902.1137680913324 1078.69564785842,761.9667487515816" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1194.49px 747.039px 0px;" fill="rgb(197, 220, 152)" stroke="rgb(197, 220, 152)" stroke-width="2px" id="55" points="1211.463627737206,688.0513638817989 1158.477813025298,800.3089323824594 1132.1778746574867,689.4908164540248" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1136.77px 779.177px 0px;" fill="rgb(189, 213, 152)" stroke="rgb(189, 213, 152)" stroke-width="2px" id="56" points="1078.69564785842,761.9667487515816 1158.477813025298,800.3089323824594 1132.1778746574867,689.4908164540248" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1155.16px 677.644px 0px;" fill="rgb(205, 232, 159)" stroke="rgb(205, 232, 159)" stroke-width="2px" id="57" points="1162.3103707923751,653.0874534716776 1132.1778746574867,689.4908164540248 1087.1245146554224,648.0103281716705" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1103.18px 715.494px 0px;" fill="rgb(197, 225, 159)" stroke="rgb(197, 225, 159)" stroke-width="2px" id="58" points="1042.7557457603896,740.1422038771236 1132.1778746574867,689.4908164540248 1087.1245146554224,648.0103281716705" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1184.36px 595.819px 0px;" fill="rgb(215, 242, 160)" stroke="rgb(215, 242, 160)" stroke-width="2px" id="59" points="1210.060553974899,529.3678393927074 1162.3103707923751,653.0874534716776 1054.9692098000207,563.7840448276131" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1130.91px 647.403px 0px;" fill="rgb(209, 238, 163)" stroke="rgb(209, 238, 163)" stroke-width="2px" id="60" points="1087.1245146554224,648.0103281716705 1162.3103707923751,653.0874534716776 1054.9692098000207,563.7840448276131" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1111.78px 503.645px 0px;" fill="rgb(218, 248, 161)" stroke="rgb(218, 248, 161)" stroke-width="2px" id="61" points="1156.6608809439535,466.5603491085572 1054.9692098000207,563.7840448276131 1036.3712703602855,384.1159358933949" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1022.73px 519.145px 0px;" fill="rgb(212, 247, 167)" stroke="rgb(212, 247, 167)" stroke-width="2px" id="62" points="951.8547788500007,502.2118380230918 1054.9692098000207,563.7840448276131 1036.3712703602855,384.1159358933949" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1191.2px 382.27px 0px;" fill="rgb(217, 241, 143)" stroke="rgb(217, 241, 143)" stroke-width="2px" id="63" points="1221.2789677550193,301.48346713536574 1156.6608809439535,466.5603491085572 1085.4825726422757,333.53150827103696" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1110.81px 418.197px 0px;" fill="rgb(216, 245, 152)" stroke="rgb(216, 245, 152)" stroke-width="2px" id="64" points="1036.3712703602855,384.1159358933949 1156.6608809439535,466.5603491085572 1085.4825726422757,333.53150827103696" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1115.34px 312.635px 0px;" fill="rgb(205, 231, 135)" stroke="rgb(205, 231, 135)" stroke-width="2px" id="65" points="1114.9276341378368,304.8528835406638 1085.4825726422757,333.53150827103696 1094.5852034962315,242.03010708884077" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1065.93px 323.328px 0px;" fill="rgb(202, 230, 139)" stroke="rgb(202, 230, 139)" stroke-width="2px" id="66" points="1001.2904980309562,329.446162540891 1085.4825726422757,333.53150827103696 1094.5852034962315,242.03010708884077" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1147.99px 232.753px 0px;" fill="rgb(200, 221, 120)" stroke="rgb(200, 221, 120)" stroke-width="2px" id="67" points="1152.3735869242346,180.30526039323675 1114.9276341378368,304.8528835406638 1119.257853984466,150.5225810229591" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1122.87px 259.59px 0px;" fill="rgb(199, 221, 124)" stroke="rgb(199, 221, 124)" stroke-width="2px" id="68" points="1094.5852034962315,242.03010708884077 1114.9276341378368,304.8528835406638 1119.257853984466,150.5225810229591" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1138.97px 118.799px 0px;" fill="rgb(198, 215, 112)" stroke="rgb(198, 215, 112)" stroke-width="2px" id="69" points="1152.3208978419243,106.50215041677889 1119.257853984466,150.5225810229591 1044.130783102245,48.64001053757147" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1054.03px 152.838px 0px;" fill="rgb(192, 214, 119)" stroke="rgb(192, 214, 119)" stroke-width="2px" id="70" points="956.9672486725071,184.7911967252295 1119.257853984466,150.5225810229591 1044.130783102245,48.64001053757147" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1056.69px 21.1478px 0px;" fill="rgb(177, 193, 101)" stroke="rgb(177, 193, 101)" stroke-width="2px" id="71" points="1052.0315258398625,0 1044.130783102245,48.64001053757147 1002.64544544169,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1017.33px 65.4397px 0px;" fill="rgb(178, 197, 108)" stroke="rgb(178, 197, 108)" stroke-width="2px" id="72" points="961.5069330994393,101.87119846723229 1044.130783102245,48.64001053757147 1002.64544544169,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1070.81px 930.699px 0px;" fill="rgb(178, 200, 142)" stroke="rgb(178, 200, 142)" stroke-width="2px" id="73" points="1073.5283766886362,902.1137680913324 1070.9055924454308,952.6279441628825 955.3206272672356,857.5965505461726" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1030.22px 952.662px 0px;" fill="rgb(172, 194, 138)" stroke="rgb(172, 194, 138)" stroke-width="2px" id="74" points="980.1617109935204,952.6279441628825 1070.9055924454308,952.6279441628825 955.3206272672356,857.5965505461726" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1024.57px 820.366px 0px;" fill="rgb(184, 212, 153)" stroke="rgb(184, 212, 153)" stroke-width="2px" id="75" points="1078.69564785842,761.9667487515816 955.3206272672356,857.5965505461726 967.4847737777634,801.8320552674984" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 930.148px 883.409px 0px;" fill="rgb(171, 200, 146)" stroke="rgb(171, 200, 146)" stroke-width="2px" id="76" points="861.5248067573835,906.9669956154356 955.3206272672356,857.5965505461726 967.4847737777634,801.8320552674984" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1112.37px 738.336px 0px;" fill="rgb(189, 216, 155)" stroke="rgb(189, 216, 155)" stroke-width="2px" id="77" points="1132.1778746574867,689.4908164540248 1078.69564785842,761.9667487515816 1042.7557457603896,740.1422038771236" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1040.77px 787.18px 0px;" fill="rgb(187, 216, 156)" stroke="rgb(187, 216, 156)" stroke-width="2px" id="78" points="967.4847737777634,801.8320552674984 1078.69564785842,761.9667487515816 1042.7557457603896,740.1422038771236" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1057.62px 696.009px 0px;" fill="rgb(191, 224, 162)" stroke="rgb(191, 224, 162)" stroke-width="2px" id="79" points="1087.1245146554224,648.0103281716705 1042.7557457603896,740.1422038771236 907.9141388521919,638.0073104288508" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 954.557px 698.85px 0px;" fill="rgb(183, 220, 164)" stroke="rgb(183, 220, 164)" stroke-width="2px" id="80" points="850.0862888446137,654.5440796991669 1042.7557457603896,740.1422038771236 907.9141388521919,638.0073104288508" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1069.3px 599.651px 0px;" fill="rgb(209, 243, 168)" stroke="rgb(209, 243, 168)" stroke-width="2px" id="81" points="1054.9692098000207,563.7840448276131 1087.1245146554224,648.0103281716705 951.8547788500007,502.2118380230918" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1005.36px 631.922px 0px;" fill="rgb(200, 237, 169)" stroke="rgb(200, 237, 169)" stroke-width="2px" id="82" points="907.9141388521919,638.0073104288508 1087.1245146554224,648.0103281716705 951.8547788500007,502.2118380230918" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1001.2px 447.554px 0px;" fill="rgb(206, 243, 165)" stroke="rgb(206, 243, 165)" stroke-width="2px" id="83" points="1036.3712703602855,384.1159358933949 951.8547788500007,502.2118380230918 943.5713478992495,429.13898071749134" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 932.522px 519.582px 0px;" fill="rgb(200, 241, 172)" stroke="rgb(200, 241, 172)" stroke-width="2px" id="84" points="878.4214595154299,549.7815453784054 951.8547788500007,502.2118380230918 943.5713478992495,429.13898071749134" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1067.66px 359.766px 0px;" fill="rgb(206, 237, 149)" stroke="rgb(206, 237, 149)" stroke-width="2px" id="85" points="1085.4825726422757,333.53150827103696 1036.3712703602855,384.1159358933949 1001.2904980309562,329.446162540891" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1005.96px 401.335px 0px;" fill="rgb(204, 238, 156)" stroke="rgb(204, 238, 156)" stroke-width="2px" id="86" points="943.5713478992495,429.13898071749134 1036.3712703602855,384.1159358933949 1001.2904980309562,329.446162540891" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1043.61px 285.065px 0px;" fill="rgb(193, 223, 138)" stroke="rgb(193, 223, 138)" stroke-width="2px" id="87" points="1094.5852034962315,242.03010708884077 1001.2904980309562,329.446162540891 913.251112057127,252.52196494277305" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 957.135px 308.735px 0px;" fill="rgb(189, 223, 146)" stroke="rgb(189, 223, 146)" stroke-width="2px" id="88" points="895.7033680939844,296.46970060007743 1001.2904980309562,329.446162540891 913.251112057127,252.52196494277305" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1101.23px 197.456px 0px;" fill="rgb(197, 221, 126)" stroke="rgb(197, 221, 126)" stroke-width="2px" id="89" points="1119.257853984466,150.5225810229591 1094.5852034962315,242.03010708884077 956.9672486725071,184.7911967252295" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1011.66px 241.804px 0px;" fill="rgb(192, 221, 135)" stroke="rgb(192, 221, 135)" stroke-width="2px" id="90" points="913.251112057127,252.52196494277305 1094.5852034962315,242.03010708884077 956.9672486725071,184.7911967252295" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 1009.39px 116.256px 0px;" fill="rgb(184, 207, 119)" stroke="rgb(184, 207, 119)" stroke-width="2px" id="91" points="1044.130783102245,48.64001053757147 956.9672486725071,184.7911967252295 961.5069330994393,101.87119846723229" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 932.06px 173.401px 0px;" fill="rgb(181, 208, 128)" stroke="rgb(181, 208, 128)" stroke-width="2px" id="92" points="866.2688944786503,180.07399750785927 956.9672486725071,184.7911967252295 961.5069330994393,101.87119846723229" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 979.265px 44.2918px 0px;" fill="rgb(165, 185, 106)" stroke="rgb(165, 185, 106)" stroke-width="2px" id="93" points="1002.64544544169,0 961.5069330994393,101.87119846723229 864.4690922327545,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 920.748px 86.7135px 0px;" fill="rgb(163, 186, 112)" stroke="rgb(163, 186, 112)" stroke-width="2px" id="94" points="868.0559765555623,97.56983514055021 961.5069330994393,101.87119846723229 864.4690922327545,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 966.373px 918.499px 0px;" fill="rgb(165, 190, 138)" stroke="rgb(165, 190, 138)" stroke-width="2px" id="95" points="955.3206272672356,857.5965505461726 980.1617109935204,952.6279441628825 861.5248067573835,906.9669956154356" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 905.383px 959.817px 0px;" fill="rgb(152, 176, 128)" stroke="rgb(152, 176, 128)" stroke-width="2px" id="96" points="815.0443890168426,952.6279441628825 980.1617109935204,952.6279441628825 861.5248067573835,906.9669956154356" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 920.242px 853.556px 0px;" fill="rgb(171, 202, 149)" stroke="rgb(171, 202, 149)" stroke-width="2px" id="97" points="967.4847737777634,801.8320552674984 861.5248067573835,906.9669956154356 862.6412606789575,763.1413604817257" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 848.744px 898.247px 0px;" fill="rgb(158, 188, 140)" stroke="rgb(158, 188, 140)" stroke-width="2px" id="98" points="803.0386037042032,904.6207995998525 861.5248067573835,906.9669956154356 862.6412606789575,763.1413604817257" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 997.219px 765.285px 0px;" fill="rgb(184, 217, 160)" stroke="rgb(184, 217, 160)" stroke-width="2px" id="99" points="1042.7557457603896,740.1422038771236 967.4847737777634,801.8320552674984 850.0862888446137,654.5440796991669" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 918.908px 775.285px 0px;" fill="rgb(179, 214, 160)" stroke="rgb(179, 214, 160)" stroke-width="2px" id="100" points="862.6412606789575,763.1413604817257 967.4847737777634,801.8320552674984 850.0862888446137,654.5440796991669" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 886.632px 647.478px 0px;" fill="rgb(181, 222, 169)" stroke="rgb(181, 222, 169)" stroke-width="2px" id="101" points="907.9141388521919,638.0073104288508 850.0862888446137,654.5440796991669 843.7614421019781,589.9404467891416" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 823px 660.427px 0px;" fill="rgb(178, 221, 169)" stroke="rgb(178, 221, 169)" stroke-width="2px" id="102" points="761.5595010868497,667.791965891538 850.0862888446137,654.5440796991669 843.7614421019781,589.9404467891416" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 935.903px 575.426px 0px;" fill="rgb(194, 235, 172)" stroke="rgb(194, 235, 172)" stroke-width="2px" id="103" points="951.8547788500007,502.2118380230918 907.9141388521919,638.0073104288508 878.4214595154299,549.7815453784054" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 888.906px 613.569px 0px;" fill="rgb(183, 225, 171)" stroke="rgb(183, 225, 171)" stroke-width="2px" id="104" points="843.7614421019781,589.9404467891416 907.9141388521919,638.0073104288508 878.4214595154299,549.7815453784054" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 909.55px 483.731px 0px;" fill="rgb(192, 235, 171)" stroke="rgb(192, 235, 171)" stroke-width="2px" id="105" points="943.5713478992495,429.13898071749134 878.4214595154299,549.7815453784054 809.9142744961507,400.9822411888383" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 858.597px 539.033px 0px;" fill="rgb(186, 231, 174)" stroke="rgb(186, 231, 174)" stroke-width="2px" id="106" points="826.3797973566208,556.3343356130013 878.4214595154299,549.7815453784054 809.9142744961507,400.9822411888383" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 975.404px 372.786px 0px;" fill="rgb(193, 228, 152)" stroke="rgb(193, 228, 152)" stroke-width="2px" id="107" points="1001.2904980309562,329.446162540891 943.5713478992495,429.13898071749134 895.7033680939844,296.46970060007743" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 892.197px 403.889px 0px;" fill="rgb(185, 225, 158)" stroke="rgb(185, 225, 158)" stroke-width="2px" id="108" points="809.9142744961507,400.9822411888383 943.5713478992495,429.13898071749134 895.7033680939844,296.46970060007743" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 904.467px 278.237px 0px;" fill="rgb(183, 219, 148)" stroke="rgb(183, 219, 148)" stroke-width="2px" id="109" points="913.251112057127,252.52196494277305 895.7033680939844,296.46970060007743 813.9613230876391,272.8596084276096" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 851.058px 328.053px 0px;" fill="rgb(181, 220, 155)" stroke="rgb(181, 220, 155)" stroke-width="2px" id="110" points="790.409073126833,367.0978241100419 895.7033680939844,296.46970060007743 813.9613230876391,272.8596084276096" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 938.685px 216.234px 0px;" fill="rgb(183, 214, 137)" stroke="rgb(183, 214, 137)" stroke-width="2px" id="111" points="956.9672486725071,184.7911967252295 913.251112057127,252.52196494277305 866.2688944786503,180.07399750785927" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 876.508px 254.524px 0px;" fill="rgb(179, 214, 143)" stroke="rgb(179, 214, 143)" stroke-width="2px" id="112" points="813.9613230876391,272.8596084276096 913.251112057127,252.52196494277305 866.2688944786503,180.07399750785927" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 920.49px 136.725px 0px;" fill="rgb(173, 200, 124)" stroke="rgb(173, 200, 124)" stroke-width="2px" id="113" points="961.5069330994393,101.87119846723229 866.2688944786503,180.07399750785927 868.0559765555623,97.56983514055021" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 850.663px 156.983px 0px;" fill="rgb(165, 195, 126)" stroke="rgb(165, 195, 126)" stroke-width="2px" id="114" points="800.9029334628975,148.4627587110642 866.2688944786503,180.07399750785927 868.0559765555623,97.56983514055021" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 874.371px 42.4217px 0px;" fill="rgb(148, 170, 104)" stroke="rgb(148, 170, 104)" stroke-width="2px" id="115" points="864.4690922327545,0 868.0559765555623,97.56983514055021 835.5838625595815,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 811.721px 95.4301px 0px;" fill="rgb(146, 171, 111)" stroke="rgb(146, 171, 111)" stroke-width="2px" id="116" points="720.3732155938602,121.9193873826749 868.0559765555623,97.56983514055021 835.5838625595815,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 845.326px 939.624px 0px;" fill="rgb(144, 170, 126)" stroke="rgb(144, 170, 126)" stroke-width="2px" id="117" points="861.5248067573835,906.9669956154356 815.0443890168426,952.6279441628825 803.0386037042032,904.6207995998525" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 778.311px 959.477px 0px;" fill="rgb(130, 159, 122)" stroke="rgb(130, 159, 122)" stroke-width="2px" id="118" points="707.3917335652736,952.6279441628825 815.0443890168426,952.6279441628825 803.0386037042032,904.6207995998525" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 837.172px 836.401px 0px;" fill="rgb(160, 194, 145)" stroke="rgb(160, 194, 145)" stroke-width="2px" id="119" points="862.6412606789575,763.1413604817257 803.0386037042032,904.6207995998525 779.4486131804338,767.8770089074076" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 780.914px 891.9px 0px;" fill="rgb(145, 179, 137)" stroke="rgb(145, 179, 137)" stroke-width="2px" id="120" points="733.2479670256525,890.7907926871842 803.0386037042032,904.6207995998525 779.4486131804338,767.8770089074076" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 855.035px 713.166px 0px;" fill="rgb(175, 215, 163)" stroke="rgb(175, 215, 163)" stroke-width="2px" id="121" points="850.0862888446137,654.5440796991669 862.6412606789575,763.1413604817257 761.5595010868497,667.791965891538" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 824.323px 762.442px 0px;" fill="rgb(168, 207, 157)" stroke="rgb(168, 207, 157)" stroke-width="2px" id="122" points="779.4486131804338,767.8770089074076 862.6412606789575,763.1413604817257 761.5595010868497,667.791965891538" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 805.257px 639.769px 0px;" fill="rgb(175, 219, 169)" stroke="rgb(175, 219, 169)" stroke-width="2px" id="123" points="843.7614421019781,589.9404467891416 761.5595010868497,667.791965891538 740.3102241288047,641.2051602245082" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 757.497px 668.096px 0px;" fill="rgb(168, 212, 164)" stroke="rgb(168, 212, 164)" stroke-width="2px" id="124" points="733.9129884516567,655.0947842534433 761.5595010868497,667.791965891538 740.3102241288047,641.2051602245082" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 868.54px 576.16px 0px;" fill="rgb(182, 226, 173)" stroke="rgb(182, 226, 173)" stroke-width="2px" id="125" points="878.4214595154299,549.7815453784054 843.7614421019781,589.9404467891416 826.3797973566208,556.3343356130013" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 808.492px 615.909px 0px;" fill="rgb(179, 224, 173)" stroke="rgb(179, 224, 173)" stroke-width="2px" id="126" points="740.3102241288047,641.2051602245082 843.7614421019781,589.9404467891416 826.3797973566208,556.3343356130013" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 824.769px 481.378px 0px;" fill="rgb(179, 227, 173)" stroke="rgb(179, 227, 173)" stroke-width="2px" id="127" points="809.9142744961507,400.9822411888383 826.3797973566208,556.3343356130013 782.0208467255806,449.5579733989105" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 785.798px 513.93px 0px;" fill="rgb(174, 223, 175)" stroke="rgb(174, 223, 175)" stroke-width="2px" id="128" points="720.2814517902312,475.8509799772141 826.3797973566208,556.3343356130013 782.0208467255806,449.5579733989105" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 856.125px 356.443px 0px;" fill="rgb(182, 224, 161)" stroke="rgb(182, 224, 161)" stroke-width="2px" id="129" points="895.7033680939844,296.46970060007743 809.9142744961507,400.9822411888383 790.409073126833,367.0978241100419" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 806.698px 423.003px 0px;" fill="rgb(180, 226, 169)" stroke="rgb(180, 226, 169)" stroke-width="2px" id="130" points="782.0208467255806,449.5579733989105 809.9142744961507,400.9822411888383 790.409073126833,367.0978241100419" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 799.102px 311.854px 0px;" fill="rgb(169, 209, 152)" stroke="rgb(169, 209, 152)" stroke-width="2px" id="131" points="813.9613230876391,272.8596084276096 790.409073126833,367.0978241100419 700.689222743315,231.91829821181443" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 743.469px 349.501px 0px;" fill="rgb(164, 207, 157)" stroke="rgb(164, 207, 157)" stroke-width="2px" id="132" points="686.0054800343038,359.44822795544246 790.409073126833,367.0978241100419 700.689222743315,231.91829821181443" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 846.608px 218.444px 0px;" fill="rgb(170, 203, 137)" stroke="rgb(170, 203, 137)" stroke-width="2px" id="133" points="866.2688944786503,180.07399750785927 813.9613230876391,272.8596084276096 800.9029334628975,148.4627587110642" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 774.617px 240.985px 0px;" fill="rgb(161, 197, 139)" stroke="rgb(161, 197, 139)" stroke-width="2px" id="134" points="700.689222743315,231.91829821181443 813.9613230876391,272.8596084276096 800.9029334628975,148.4627587110642" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 830.036px 124.64px 0px;" fill="rgb(152, 181, 121)" stroke="rgb(152, 181, 121)" stroke-width="2px" id="135" points="868.0559765555623,97.56983514055021 800.9029334628975,148.4627587110642 720.3732155938602,121.9193873826749" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 774.354px 169.489px 0px;" fill="rgb(149, 182, 131)" stroke="rgb(149, 182, 131)" stroke-width="2px" id="136" points="739.9862942227356,200.72239502703806 800.9029334628975,148.4627587110642 720.3732155938602,121.9193873826749" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 774.4px 53.0084px 0px;" fill="rgb(125, 152, 108)" stroke="rgb(125, 152, 108)" stroke-width="2px" id="137" points="835.5838625595815,0 720.3732155938602,121.9193873826749 675.4918573574587,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 692.247px 82.6886px 0px;" fill="rgb(115, 146, 117)" stroke="rgb(115, 146, 117)" stroke-width="2px" id="138" points="646.6319511715724,68.26434049705853 720.3732155938602,121.9193873826749 675.4918573574587,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 762.977px 936.6px 0px;" fill="rgb(129, 162, 130)" stroke="rgb(129, 162, 130)" stroke-width="2px" id="139" points="803.0386037042032,904.6207995998525 707.3917335652736,952.6279441628825 733.2479670256525,890.7907926871842" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 706.645px 957.472px 0px;" fill="rgb(115, 154, 132)" stroke="rgb(115, 154, 132)" stroke-width="2px" id="140" points="673.4746168907697,952.6279441628825 707.3917335652736,952.6279441628825 733.2479670256525,890.7907926871842" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 748.896px 836.247px 0px;" fill="rgb(139, 182, 150)" stroke="rgb(139, 182, 150)" stroke-width="2px" id="141" points="779.4486131804338,767.8770089074076 733.2479670256525,890.7907926871842 629.294007759663,794.1011367126107" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 690.699px 862.686px 0px;" fill="rgb(125, 172, 152)" stroke="rgb(125, 172, 152)" stroke-width="2px" id="142" points="645.5951445070901,828.6863004524034 733.2479670256525,890.7907926871842 629.294007759663,794.1011367126107" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 776.368px 719.145px 0px;" fill="rgb(166, 206, 159)" stroke="rgb(166, 206, 159)" stroke-width="2px" id="143" points="761.5595010868497,667.791965891538 779.4486131804338,767.8770089074076 733.9129884516567,655.0947842534433" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 718.861px 774.062px 0px;" fill="rgb(151, 196, 158)" stroke="rgb(151, 196, 158)" stroke-width="2px" id="144" points="629.294007759663,794.1011367126107 779.4486131804338,767.8770089074076 733.9129884516567,655.0947842534433" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 740.496px 645.141px 0px;" fill="rgb(167, 213, 167)" stroke="rgb(167, 213, 167)" stroke-width="2px" id="145" points="740.3102241288047,641.2051602245082 733.9129884516567,655.0947842534433 686.7516336799582,562.574360711269" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 690.947px 650.296px 0px;" fill="rgb(160, 209, 168)" stroke="rgb(160, 209, 168)" stroke-width="2px" id="146" points="626.3480271273778,653.0601986928267 733.9129884516567,655.0947842534433 686.7516336799582,562.574360711269" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 785.558px 589.633px 0px;" fill="rgb(177, 226, 176)" stroke="rgb(177, 226, 176)" stroke-width="2px" id="147" points="826.3797973566208,556.3343356130013 740.3102241288047,641.2051602245082 720.2814517902312,475.8509799772141" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 724.85px 592.346px 0px;" fill="rgb(174, 224, 176)" stroke="rgb(174, 224, 176)" stroke-width="2px" id="148" points="686.7516336799582,562.574360711269 740.3102241288047,641.2051602245082 720.2814517902312,475.8509799772141" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 752.894px 460.98px 0px;" fill="rgb(176, 226, 178)" stroke="rgb(176, 226, 178)" stroke-width="2px" id="149" points="782.0208467255806,449.5579733989105 720.2814517902312,475.8509799772141 688.0636935207472,404.5333469008699" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 662.574px 503.119px 0px;" fill="rgb(180, 231, 182)" stroke="rgb(180, 231, 182)" stroke-width="2px" id="150" points="574.2838711131689,546.4779429375074 720.2814517902312,475.8509799772141 688.0636935207472,404.5333469008699" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 783.086px 407.162px 0px;" fill="rgb(175, 222, 169)" stroke="rgb(175, 222, 169)" stroke-width="2px" id="151" points="790.409073126833,367.0978241100419 782.0208467255806,449.5579733989105 686.0054800343038,359.44822795544246" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 738.588px 423.438px 0px;" fill="rgb(170, 219, 171)" stroke="rgb(170, 219, 171)" stroke-width="2px" id="152" points="688.0636935207472,404.5333469008699 782.0208467255806,449.5579733989105 686.0054800343038,359.44822795544246" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 699.767px 293.385px 0px;" fill="rgb(151, 194, 155)" stroke="rgb(151, 194, 155)" stroke-width="2px" id="153" points="700.689222743315,231.91829821181443 686.0054800343038,359.44822795544246 668.3051385614892,250.2590319450323" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 648.1px 341.764px 0px;" fill="rgb(149, 195, 162)" stroke="rgb(149, 195, 162)" stroke-width="2px" id="154" points="581.855099605667,343.1883395153721 686.0054800343038,359.44822795544246 668.3051385614892,250.2590319450323" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 760.111px 194.473px 0px;" fill="rgb(153, 189, 137)" stroke="rgb(153, 189, 137)" stroke-width="2px" id="155" points="800.9029334628975,148.4627587110642 700.689222743315,231.91829821181443 739.9862942227356,200.72239502703806" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 702.459px 238.733px 0px;" fill="rgb(149, 188, 146)" stroke="rgb(149, 188, 146)" stroke-width="2px" id="156" points="668.3051385614892,250.2590319450323 700.689222743315,231.91829821181443 739.9862942227356,200.72239502703806" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 728.654px 150.172px 0px;" fill="rgb(133, 167, 130)" stroke="rgb(133, 167, 130)" stroke-width="2px" id="157" points="720.3732155938602,121.9193873826749 739.9862942227356,200.72239502703806 646.6319511715724,68.26434049705853" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 697.992px 165.434px 0px;" fill="rgb(129, 165, 133)" stroke="rgb(129, 165, 133)" stroke-width="2px" id="158" points="649.8510309973665,157.02152893791475 739.9862942227356,200.72239502703806 646.6319511715724,68.26434049705853" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 662.664px 29.6801px 0px;" fill="rgb(96, 126, 110)" stroke="rgb(96, 126, 110)" stroke-width="2px" id="159" points="675.4918573574587,0 646.6319511715724,68.26434049705853 606.0100122958523,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 627.841px 54.4326px 0px;" fill="rgb(93, 125, 115)" stroke="rgb(93, 125, 115)" stroke-width="2px" id="160" points="595.3985936663624,56.930685772289394 646.6319511715724,68.26434049705853 606.0100122958523,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 705.183px 921.586px 0px;" fill="rgb(118, 162, 142)" stroke="rgb(118, 162, 142)" stroke-width="2px" id="161" points="733.2479670256525,890.7907926871842 673.4746168907697,952.6279441628825 645.5951445070901,828.6863004524034" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 641.851px 948.472px 0px;" fill="rgb(101, 150, 142)" stroke="rgb(101, 150, 142)" stroke-width="2px" id="162" points="587.5850565077103,952.6279441628825 673.4746168907697,952.6279441628825 645.5951445070901,828.6863004524034" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 641.037px 823.719px 0px;" fill="rgb(116, 170, 158)" stroke="rgb(116, 170, 158)" stroke-width="2px" id="163" points="629.294007759663,794.1011367126107 645.5951445070901,828.6863004524034 598.4906115493847,815.2971252520294" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 602.452px 838.788px 0px;" fill="rgb(111, 168, 161)" stroke="rgb(111, 168, 161)" stroke-width="2px" id="164" points="540.5484128866863,828.7597376974828 645.5951445070901,828.6863004524034 598.4906115493847,815.2971252520294" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 683.474px 724.732px 0px;" fill="rgb(144, 195, 165)" stroke="rgb(144, 195, 165)" stroke-width="2px" id="165" points="733.9129884516567,655.0947842534433 629.294007759663,794.1011367126107 626.3480271273778,653.0601986928267" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 624.595px 794.385px 0px;" fill="rgb(128, 183, 166)" stroke="rgb(128, 183, 166)" stroke-width="2px" id="166" points="598.4906115493847,815.2971252520294 629.294007759663,794.1011367126107 626.3480271273778,653.0601986928267" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 652.457px 616.126px 0px;" fill="rgb(159, 214, 179)" stroke="rgb(159, 214, 179)" stroke-width="2px" id="167" points="686.7516336799582,562.574360711269 626.3480271273778,653.0601986928267 562.6533346441107,604.3655087062901" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 553.239px 687.626px 0px;" fill="rgb(139, 201, 184)" stroke="rgb(139, 201, 184)" stroke-width="2px" id="168" points="458.5498985124885,727.0251912516912 626.3480271273778,653.0601986928267 562.6533346441107,604.3655087062901" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 694.983px 530.689px 0px;" fill="rgb(178, 229, 180)" stroke="rgb(178, 229, 180)" stroke-width="2px" id="169" points="720.2814517902312,475.8509799772141 686.7516336799582,562.574360711269 574.2838711131689,546.4779429375074" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 626.449px 586.565px 0px;" fill="rgb(163, 218, 181)" stroke="rgb(163, 218, 181)" stroke-width="2px" id="170" points="562.6533346441107,604.3655087062901 686.7516336799582,562.574360711269 574.2838711131689,546.4779429375074" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 625.275px 474.969px 0px;" fill="rgb(166, 216, 175)" stroke="rgb(166, 216, 175)" stroke-width="2px" id="171" points="688.0636935207472,404.5333469008699 574.2838711131689,546.4779429375074 527.3520866143411,424.25514126576314" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 556.444px 527.5px 0px;" fill="rgb(157, 213, 185)" stroke="rgb(157, 213, 185)" stroke-width="2px" id="172" points="529.7542309758817,525.3538685449639 574.2838711131689,546.4779429375074 527.3520866143411,424.25514126576314" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 681.748px 381.903px 0px;" fill="rgb(160, 208, 169)" stroke="rgb(160, 208, 169)" stroke-width="2px" id="173" points="686.0054800343038,359.44822795544246 688.0636935207472,404.5333469008699 581.855099605667,343.1883395153721" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 612.769px 410.08px 0px;" fill="rgb(159, 208, 172)" stroke="rgb(159, 208, 172)" stroke-width="2px" id="174" points="527.3520866143411,424.25514126576314 688.0636935207472,404.5333469008699 581.855099605667,343.1883395153721" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 626.601px 291.897px 0px;" fill="rgb(139, 184, 158)" stroke="rgb(139, 184, 158)" stroke-width="2px" id="175" points="668.3051385614892,250.2590319450323 581.855099605667,343.1883395153721 573.0634989061223,233.74536418068672" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 555.321px 326.939px 0px;" fill="rgb(140, 186, 163)" stroke="rgb(140, 186, 163)" stroke-width="2px" id="176" points="504.36291936468024,330.8564300808401 581.855099605667,343.1883395153721 573.0634989061223,233.74536418068672" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 706.482px 218.836px 0px;" fill="rgb(141, 180, 143)" stroke="rgb(141, 180, 143)" stroke-width="2px" id="177" points="739.9862942227356,200.72239502703806 668.3051385614892,250.2590319450323 649.8510309973665,157.02152893791475" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 633.907px 233.193px 0px;" fill="rgb(127, 169, 146)" stroke="rgb(127, 169, 146)" stroke-width="2px" id="178" points="573.0634989061223,233.74536418068672 668.3051385614892,250.2590319450323 649.8510309973665,157.02152893791475" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 649.978px 106.201px 0px;" fill="rgb(107, 142, 125)" stroke="rgb(107, 142, 125)" stroke-width="2px" id="179" points="646.6319511715724,68.26434049705853 649.8510309973665,157.02152893791475 595.3985936663624,56.930685772289394" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 569.91px 169.209px 0px;" fill="rgb(110, 149, 139)" stroke="rgb(110, 149, 139)" stroke-width="2px" id="180" points="462.4759095181957,213.18191905071313 649.8510309973665,157.02152893791475 595.3985936663624,56.930685772289394" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 599.93px 24.7525px 0px;" fill="rgb(83, 115, 112)" stroke="rgb(83, 115, 112)" stroke-width="2px" id="181" points="606.0100122958523,0 595.3985936663624,56.930685772289394 535.2898788450775,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 525.858px 51.5348px 0px;" fill="rgb(85, 120, 123)" stroke="rgb(85, 120, 123)" stroke-width="2px" id="182" points="435.64360184516755,61.59937515743142 595.3985936663624,56.930685772289394 535.2898788450775,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 614.506px 894.595px 0px;" fill="rgb(100, 156, 154)" stroke="rgb(100, 156, 154)" stroke-width="2px" id="183" points="645.5951445070901,828.6863004524034 587.5850565077103,952.6279441628825 540.5484128866863,828.7597376974828" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 533.863px 948.482px 0px;" fill="rgb(87, 149, 159)" stroke="rgb(87, 149, 159)" stroke-width="2px" id="184" points="460.11712369052384,952.6279441628825 587.5850565077103,952.6279441628825 540.5484128866863,828.7597376974828" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 554.022px 830.78px 0px;" fill="rgb(106, 172, 176)" stroke="rgb(106, 172, 176)" stroke-width="2px" id="185" points="598.4906115493847,815.2971252520294 540.5484128866863,828.7597376974828 405.6367106939588,800.2105967250031" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 467.455px 855.771px 0px;" fill="rgb(95, 167, 183)" stroke="rgb(95, 167, 183)" stroke-width="2px" id="186" points="399.38542872625584,872.7759332635577 540.5484128866863,828.7597376974828 405.6367106939588,800.2105967250031" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 598.995px 743.782px 0px;" fill="rgb(128, 189, 178)" stroke="rgb(128, 189, 178)" stroke-width="2px" id="187" points="626.3480271273778,653.0601986928267 598.4906115493847,815.2971252520294 458.5498985124885,727.0251912516912" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 503.034px 807.761px 0px;" fill="rgb(110, 178, 183)" stroke="rgb(110, 178, 183)" stroke-width="2px" id="188" points="405.6367106939588,800.2105967250031 598.4906115493847,815.2971252520294 458.5498985124885,727.0251912516912" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 504.936px 667.472px 0px;" fill="rgb(130, 196, 188)" stroke="rgb(130, 196, 188)" stroke-width="2px" id="189" points="562.6533346441107,604.3655087062901 458.5498985124885,727.0251912516912 420.446270892218,611.3873090814957" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 423.384px 706.049px 0px;" fill="rgb(115, 186, 191)" stroke="rgb(115, 186, 191)" stroke-width="2px" id="190" points="375.08422886278515,693.0927510446206 458.5498985124885,727.0251912516912 420.446270892218,611.3873090814957" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 571.097px 576.505px 0px;" fill="rgb(155, 213, 184)" stroke="rgb(155, 213, 184)" stroke-width="2px" id="191" points="574.2838711131689,546.4779429375074 562.6533346441107,604.3655087062901 529.7542309758817,525.3538685449639" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 504.211px 604.726px 0px;" fill="rgb(143, 206, 189)" stroke="rgb(143, 206, 189)" stroke-width="2px" id="192" points="420.446270892218,611.3873090814957 562.6533346441107,604.3655087062901 529.7542309758817,525.3538685449639" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 518.971px 480.903px 0px;" fill="rgb(146, 205, 187)" stroke="rgb(146, 205, 187)" stroke-width="2px" id="193" points="527.3520866143411,424.25514126576314 529.7542309758817,525.3538685449639 409.57834393968636,469.4050968443876" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 464.62px 525.314px 0px;" fill="rgb(137, 201, 193)" stroke="rgb(137, 201, 193)" stroke-width="2px" id="194" points="402.3452915146724,526.3999709153009 529.7542309758817,525.3538685449639 409.57834393968636,469.4050968443876" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 555.36px 381.621px 0px;" fill="rgb(147, 195, 168)" stroke="rgb(147, 195, 168)" stroke-width="2px" id="195" points="581.855099605667,343.1883395153721 527.3520866143411,424.25514126576314 504.36291936468024,330.8564300808401" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 480.457px 436.498px 0px;" fill="rgb(142, 195, 178)" stroke="rgb(142, 195, 178)" stroke-width="2px" id="196" points="409.57834393968636,469.4050968443876 527.3520866143411,424.25514126576314 504.36291936468024,330.8564300808401" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 529.559px 280.033px 0px;" fill="rgb(128, 173, 160)" stroke="rgb(128, 173, 160)" stroke-width="2px" id="197" points="573.0634989061223,233.74536418068672 504.36291936468024,330.8564300808401 421.6798183523697,238.42537205060995" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 436.35px 314.593px 0px;" fill="rgb(122, 167, 160)" stroke="rgb(122, 167, 160)" stroke-width="2px" id="198" points="358.6809566429147,313.2321578541498 504.36291936468024,330.8564300808401 421.6798183523697,238.42537205060995" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 598.728px 200.795px 0px;" fill="rgb(122, 164, 149)" stroke="rgb(122, 164, 149)" stroke-width="2px" id="199" points="649.8510309973665,157.02152893791475 573.0634989061223,233.74536418068672 462.4759095181957,213.18191905071313" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 499.523px 236.188px 0px;" fill="rgb(120, 164, 156)" stroke="rgb(120, 164, 156)" stroke-width="2px" id="200" points="421.6798183523697,238.42537205060995 573.0634989061223,233.74536418068672 462.4759095181957,213.18191905071313" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 523.082px 126.368px 0px;" fill="rgb(99, 138, 138)" stroke="rgb(99, 138, 138)" stroke-width="2px" id="201" points="595.3985936663624,56.930685772289394 462.4759095181957,213.18191905071313 435.64360184516755,61.59937515743142" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 449.575px 191.064px 0px;" fill="rgb(103, 146, 148)" stroke="rgb(103, 146, 148)" stroke-width="2px" id="202" points="426.3313746088937,205.73284171936382 462.4759095181957,213.18191905071313 435.64360184516755,61.59937515743142" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 481.691px 26.7823px 0px;" fill="rgb(78, 113, 123)" stroke="rgb(78, 113, 123)" stroke-width="2px" id="203" points="535.2898788450775,0 435.64360184516755,61.59937515743142 410.8689826867224,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 408.125px 51.2369px 0px;" fill="rgb(77, 115, 130)" stroke="rgb(77, 115, 130)" stroke-width="2px" id="204" points="366.08744966854306,56.245560703724436 435.64360184516755,61.59937515743142 410.8689826867224,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 492.954px 901.006px 0px;" fill="rgb(87, 156, 175)" stroke="rgb(87, 156, 175)" stroke-width="2px" id="205" points="540.5484128866863,828.7597376974828 460.11712369052384,952.6279441628825 399.38542872625584,872.7759332635577" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 424.239px 954.861px 0px;" fill="rgb(73, 146, 176)" stroke="rgb(73, 146, 176)" stroke-width="2px" id="206" points="382.5039281487785,952.6279441628825 460.11712369052384,952.6279441628825 399.38542872625584,872.7759332635577" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 394.271px 846.701px 0px;" fill="rgb(84, 163, 192)" stroke="rgb(84, 163, 192)" stroke-width="2px" id="207" points="405.6367106939588,800.2105967250031 399.38542872625584,872.7759332635577 305.4058270885946,823.277485325632" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 328.453px 887.307px 0px;" fill="rgb(71, 155, 195)" stroke="rgb(71, 155, 195)" stroke-width="2px" id="208" points="254.2542062573728,893.6051435505401 399.38542872625584,872.7759332635577 305.4058270885946,823.277485325632" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 430.093px 764.464px 0px;" fill="rgb(105, 179, 192)" stroke="rgb(105, 179, 192)" stroke-width="2px" id="209" points="458.5498985124885,727.0251912516912 405.6367106939588,800.2105967250031 375.08422886278515,693.0927510446206" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 363.509px 806.313px 0px;" fill="rgb(92, 170, 195)" stroke="rgb(92, 170, 195)" stroke-width="2px" id="210" points="305.4058270885946,823.277485325632 405.6367106939588,800.2105967250031 375.08422886278515,693.0927510446206" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 398.413px 661.636px 0px;" fill="rgb(113, 186, 197)" stroke="rgb(113, 186, 197)" stroke-width="2px" id="211" points="420.446270892218,611.3873090814957 375.08422886278515,693.0927510446206 362.45746377593724,651.8454838357572" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 324.497px 705.765px 0px;" fill="rgb(98, 176, 199)" stroke="rgb(98, 176, 199)" stroke-width="2px" id="212" points="250.43889849990697,712.8855910760851 375.08422886278515,693.0927510446206 362.45746377593724,651.8454838357572" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 471.442px 570.525px 0px;" fill="rgb(136, 201, 195)" stroke="rgb(136, 201, 195)" stroke-width="2px" id="213" points="529.7542309758817,525.3538685449639 420.446270892218,611.3873090814957 402.3452915146724,526.3999709153009" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 398.704px 625.522px 0px;" fill="rgb(121, 192, 199)" stroke="rgb(121, 192, 199)" stroke-width="2px" id="214" points="362.45746377593724,651.8454838357572 420.446270892218,611.3873090814957 402.3452915146724,526.3999709153009" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 409.119px 497.006px 0px;" fill="rgb(128, 193, 194)" stroke="rgb(128, 193, 194)" stroke-width="2px" id="215" points="409.57834393968636,469.4050968443876 402.3452915146724,526.3999709153009 387.1494389178704,441.92335298770263" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 345.176px 524.777px 0px;" fill="rgb(118, 186, 197)" stroke="rgb(118, 186, 197)" stroke-width="2px" id="216" points="262.5092451954999,533.2792538110849 402.3452915146724,526.3999709153009 387.1494389178704,441.92335298770263" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 449.349px 393.336px 0px;" fill="rgb(129, 182, 175)" stroke="rgb(129, 182, 175)" stroke-width="2px" id="217" points="504.36291936468024,330.8564300808401 409.57834393968636,469.4050968443876 358.6809566429147,313.2321578541498" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 398.386px 441.626px 0px;" fill="rgb(124, 183, 184)" stroke="rgb(124, 183, 184)" stroke-width="2px" id="218" points="387.1494389178704,441.92335298770263 409.57834393968636,469.4050968443876 358.6809566429147,313.2321578541498" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 396.074px 284.556px 0px;" fill="rgb(115, 160, 157)" stroke="rgb(115, 160, 157)" stroke-width="2px" id="219" points="421.6798183523697,238.42537205060995 358.6809566429147,313.2321578541498 391.8302945928767,308.4627972522094" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 342.222px 326.837px 0px;" fill="rgb(111, 162, 167)" stroke="rgb(111, 162, 167)" stroke-width="2px" id="220" points="297.8197171466163,335.6715397798527 358.6809566429147,313.2321578541498 391.8302945928767,308.4627972522094" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 446.203px 226.167px 0px;" fill="rgb(113, 157, 155)" stroke="rgb(113, 157, 155)" stroke-width="2px" id="221" points="462.4759095181957,213.18191905071313 421.6798183523697,238.42537205060995 426.3313746088937,205.73284171936382" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 415.487px 267.594px 0px;" fill="rgb(114, 159, 157)" stroke="rgb(114, 159, 157)" stroke-width="2px" id="222" points="391.8302945928767,308.4627972522094 421.6798183523697,238.42537205060995 426.3313746088937,205.73284171936382" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 427.828px 124.383px 0px;" fill="rgb(91, 131, 141)" stroke="rgb(91, 131, 141)" stroke-width="2px" id="223" points="435.64360184516755,61.59937515743142 426.3313746088937,205.73284171936382 366.08744966854306,56.245560703724436" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 390.404px 166.974px 0px;" fill="rgb(93, 135, 146)" stroke="rgb(93, 135, 146)" stroke-width="2px" id="224" points="349.5696583015937,159.55964954337142 426.3313746088937,205.73284171936382 366.08744966854306,56.245560703724436" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 375.557px 24.4546px 0px;" fill="rgb(68, 105, 128)" stroke="rgb(68, 105, 128)" stroke-width="2px" id="225" points="410.8689826867224,0 366.08744966854306,56.245560703724436 260.4753983873526,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 297.323px 48.4922px 0px;" fill="rgb(65, 103, 132)" stroke="rgb(65, 103, 132)" stroke-width="2px" id="226" points="230.92928872742047,55.28643899740209 366.08744966854306,56.245560703724436 260.4753983873526,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 376.8px 923.162px 0px;" fill="rgb(68, 149, 188)" stroke="rgb(68, 149, 188)" stroke-width="2px" id="227" points="399.38542872625584,872.7759332635577 382.5039281487785,952.6279441628825 254.2542062573728,893.6051435505401" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 302.42px 957.88px 0px;" fill="rgb(55, 141, 192)" stroke="rgb(55, 141, 192)" stroke-width="2px" id="228" points="228.31163427939094,952.6279441628825 382.5039281487785,952.6279441628825 254.2542062573728,893.6051435505401" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 280.212px 860.003px 0px;" fill="rgb(68, 154, 199)" stroke="rgb(68, 154, 199)" stroke-width="2px" id="229" points="305.4058270885946,823.277485325632 254.2542062573728,893.6051435505401 254.47967100139155,783.3715729440169" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 250.575px 879.852px 0px;" fill="rgb(62, 150, 201)" stroke="rgb(62, 150, 201)" stroke-width="2px" id="230" points="237.24087592618457,868.9298346363012 254.2542062573728,893.6051435505401 254.47967100139155,783.3715729440169" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 332.161px 762.608px 0px;" fill="rgb(87, 167, 196)" stroke="rgb(87, 167, 196)" stroke-width="2px" id="231" points="375.08422886278515,693.0927510446206 305.4058270885946,823.277485325632 250.43889849990697,712.8855910760851" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 279.724px 801.86px 0px;" fill="rgb(76, 159, 198)" stroke="rgb(76, 159, 198)" stroke-width="2px" id="232" points="254.47967100139155,783.3715729440169 305.4058270885946,823.277485325632 250.43889849990697,712.8855910760851" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 297.986px 676.069px 0px;" fill="rgb(93, 173, 203)" stroke="rgb(93, 173, 203)" stroke-width="2px" id="233" points="362.45746377593724,651.8454838357572 250.43889849990697,712.8855910760851 217.4144852678707,570.68192670616" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 229.443px 698.599px 0px;" fill="rgb(81, 163, 203)" stroke="rgb(81, 163, 203)" stroke-width="2px" id="234" points="204.8077337484882,703.665227953446 250.43889849990697,712.8855910760851 217.4144852678707,570.68192670616" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 370.568px 589.568px 0px;" fill="rgb(113, 186, 201)" stroke="rgb(113, 186, 201)" stroke-width="2px" id="235" points="402.3452915146724,526.3999709153009 362.45746377593724,651.8454838357572 262.5092451954999,533.2792538110849" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 290.163px 608.821px 0px;" fill="rgb(99, 176, 203)" stroke="rgb(99, 176, 203)" stroke-width="2px" id="236" points="217.4144852678707,570.68192670616 362.45746377593724,651.8454838357572 262.5092451954999,533.2792538110849" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 325.606px 480.657px 0px;" fill="rgb(111, 177, 193)" stroke="rgb(111, 177, 193)" stroke-width="2px" id="237" points="387.1494389178704,441.92335298770263 262.5092451954999,533.2792538110849 297.7042749280217,390.92631523948745" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 236.161px 526.99px 0px;" fill="rgb(97, 167, 196)" stroke="rgb(97, 167, 196)" stroke-width="2px" id="238" points="181.42554704099027,548.4879665745268 262.5092451954999,533.2792538110849 297.7042749280217,390.92631523948745" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 367.436px 376.977px 0px;" fill="rgb(115, 170, 177)" stroke="rgb(115, 170, 177)" stroke-width="2px" id="239" points="358.6809566429147,313.2321578541498 387.1494389178704,441.92335298770263 297.8197171466163,335.6715397798527" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 340.925px 410.757px 0px;" fill="rgb(112, 171, 183)" stroke="rgb(112, 171, 183)" stroke-width="2px" id="240" points="297.7042749280217,390.92631523948745 387.1494389178704,441.92335298770263 297.8197171466163,335.6715397798527" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 338.28px 317.174px 0px;" fill="rgb(104, 153, 163)" stroke="rgb(104, 153, 163)" stroke-width="2px" id="241" points="391.8302945928767,308.4627972522094 297.8197171466163,335.6715397798527 265.18361804738475,256.09841427141544" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 253.911px 330.028px 0px;" fill="rgb(93, 145, 166)" stroke="rgb(93, 145, 166)" stroke-width="2px" id="242" points="197.78130062753405,338.0268169233187 297.8197171466163,335.6715397798527 265.18361804738475,256.09841427141544" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 406.385px 246.688px 0px;" fill="rgb(107, 151, 154)" stroke="rgb(107, 151, 154)" stroke-width="2px" id="243" points="426.3313746088937,205.73284171936382 391.8302945928767,308.4627972522094 349.5696583015937,159.55964954337142" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 336.321px 268.586px 0px;" fill="rgb(101, 144, 152)" stroke="rgb(101, 144, 152)" stroke-width="2px" id="244" points="265.18361804738475,256.09841427141544 391.8302945928767,308.4627972522094 349.5696583015937,159.55964954337142" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 344.623px 101.841px 0px;" fill="rgb(77, 117, 140)" stroke="rgb(77, 117, 140)" stroke-width="2px" id="245" points="366.08744966854306,56.245560703724436 349.5696583015937,159.55964954337142 230.92928872742047,55.28643899740209" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 259.268px 172.883px 0px;" fill="rgb(76, 117, 144)" stroke="rgb(76, 117, 144)" stroke-width="2px" id="246" points="169.77027923395303,219.64172455258108 349.5696583015937,159.55964954337142 230.92928872742047,55.28643899740209" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 241.067px 24.0376px 0px;" fill="rgb(54, 92, 130)" stroke="rgb(54, 92, 130)" stroke-width="2px" id="247" points="260.4753983873526,0 230.92928872742047,55.28643899740209 189.15062954872525,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 214.417px 40.2936px 0px;" fill="rgb(54, 92, 132)" stroke="rgb(54, 92, 132)" stroke-width="2px" id="248" points="199.18070288898798,37.388797097401074 230.92928872742047,55.28643899740209 189.15062954872525,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 244.194px 928.642px 0px;" fill="rgb(52, 142, 199)" stroke="rgb(52, 142, 199)" stroke-width="2px" id="249" points="254.2542062573728,893.6051435505401 228.31163427939094,952.6279441628825 237.24087592618457,868.9298346363012" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 205.506px 954.304px 0px;" fill="rgb(44, 137, 201)" stroke="rgb(44, 137, 201)" stroke-width="2px" id="250" points="165.27102506394482,952.6279441628825 228.31163427939094,952.6279441628825 237.24087592618457,868.9298346363012" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 235.548px 833.73px 0px;" fill="rgb(60, 149, 201)" stroke="rgb(60, 149, 201)" stroke-width="2px" id="251" points="254.47967100139155,783.3715729440169 237.24087592618457,868.9298346363012 150.12171700801431,795.8351003933358" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 189.054px 886.341px 0px;" fill="rgb(48, 141, 204)" stroke="rgb(48, 141, 204)" stroke-width="2px" id="252" points="147.5422285866817,904.3762960139625 237.24087592618457,868.9298346363012 150.12171700801431,795.8351003933358" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 249.212px 752.527px 0px;" fill="rgb(75, 159, 200)" stroke="rgb(75, 159, 200)" stroke-width="2px" id="253" points="250.43889849990697,712.8855910760851 254.47967100139155,783.3715729440169 204.8077337484882,703.665227953446" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 205.596px 788.592px 0px;" fill="rgb(64, 151, 199)" stroke="rgb(64, 151, 199)" stroke-width="2px" id="254" points="150.12171700801431,795.8351003933358 254.47967100139155,783.3715729440169 204.8077337484882,703.665227953446" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 199.956px 637.735px 0px;" fill="rgb(75, 156, 201)" stroke="rgb(75, 156, 201)" stroke-width="2px" id="255" points="217.4144852678707,570.68192670616 204.8077337484882,703.665227953446 113.02938737440866,577.331010660571" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 131.413px 679.315px 0px;" fill="rgb(61, 144, 198)" stroke="rgb(61, 144, 198)" stroke-width="2px" id="256" points="59.76631745175801,666.3149125033848 204.8077337484882,703.665227953446 113.02938737440866,577.331010660571" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 234.956px 559.474px 0px;" fill="rgb(89, 165, 200)" stroke="rgb(89, 165, 200)" stroke-width="2px" id="257" points="262.5092451954999,533.2792538110849 217.4144852678707,570.68192670616 181.42554704099027,548.4879665745268" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 169.965px 578.627px 0px;" fill="rgb(77, 154, 198)" stroke="rgb(77, 154, 198)" stroke-width="2px" id="258" points="113.02938737440866,577.331010660571 217.4144852678707,570.68192670616 181.42554704099027,548.4879665745268" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 225.498px 478.333px 0px;" fill="rgb(87, 156, 191)" stroke="rgb(87, 156, 191)" stroke-width="2px" id="259" points="297.7042749280217,390.92631523948745 181.42554704099027,548.4879665745268 118.54380812377578,482.2566657126423" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 152.654px 518.166px 0px;" fill="rgb(74, 146, 190)" stroke="rgb(74, 146, 190)" stroke-width="2px" id="260" points="130.16316078958062,482.5418752236205 181.42554704099027,548.4879665745268 118.54380812377578,482.2566657126423" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 287.587px 364.902px 0px;" fill="rgb(98, 155, 176)" stroke="rgb(98, 155, 176)" stroke-width="2px" id="261" points="297.8197171466163,335.6715397798527 297.7042749280217,390.92631523948745 197.78130062753405,338.0268169233187" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 209.641px 428.634px 0px;" fill="rgb(88, 151, 182)" stroke="rgb(88, 151, 182)" stroke-width="2px" id="262" points="118.54380812377578,482.2566657126423 297.7042749280217,390.92631523948745 197.78130062753405,338.0268169233187" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 229.334px 297.106px 0px;" fill="rgb(85, 135, 160)" stroke="rgb(85, 135, 160)" stroke-width="2px" id="263" points="265.18361804738475,256.09841427141544 197.78130062753405,338.0268169233187 193.51226750109504,267.6523645085376" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 149.176px 343.757px 0px;" fill="rgb(75, 129, 164)" stroke="rgb(75, 129, 164)" stroke-width="2px" id="264" points="80.81874886103252,363.3972295471816 197.78130062753405,338.0268169233187 193.51226750109504,267.6523645085376" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 291.888px 212.553px 0px;" fill="rgb(85, 128, 147)" stroke="rgb(85, 128, 147)" stroke-width="2px" id="265" points="349.5696583015937,159.55964954337142 265.18361804738475,256.09841427141544 169.77027923395303,219.64172455258108" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 224.037px 259.55px 0px;" fill="rgb(80, 125, 151)" stroke="rgb(80, 125, 151)" stroke-width="2px" id="266" points="193.51226750109504,267.6523645085376 265.18361804738475,256.09841427141544 169.77027923395303,219.64172455258108" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 203.084px 124.953px 0px;" fill="rgb(63, 103, 139)" stroke="rgb(63, 103, 139)" stroke-width="2px" id="267" points="230.92928872742047,55.28643899740209 169.77027923395303,219.64172455258108 199.18070288898798,37.388797097401074" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 157.121px 175.052px 0px;" fill="rgb(62, 102, 139)" stroke="rgb(62, 102, 139)" stroke-width="2px" id="268" points="125.21467969332238,170.51386157867228 169.77027923395303,219.64172455258108 199.18070288898798,37.388797097401074" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 176.443px 16.256px 0px;" fill="rgb(43, 80, 129)" stroke="rgb(43, 80, 129)" stroke-width="2px" id="269" points="189.15062954872525,0 199.18070288898798,37.388797097401074 52.46446384023871,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 100.49px 41.9838px 0px;" fill="rgb(37, 75, 130)" stroke="rgb(37, 75, 130)" stroke-width="2px" id="270" points="14.457329391427862,59.17395867453082 199.18070288898798,37.388797097401074 52.46446384023871,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 196.388px 923.051px 0px;" fill="rgb(42, 137, 204)" stroke="rgb(42, 137, 204)" stroke-width="2px" id="271" points="237.24087592618457,868.9298346363012 165.27102506394482,952.6279441628825 147.5422285866817,904.3762960139625" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 120.762px 959.441px 0px;" fill="rgb(28, 128, 207)" stroke="rgb(28, 128, 207)" stroke-width="2px" id="272" points="63.301831773848306,952.6279441628825 165.27102506394482,952.6279441628825 147.5422285866817,904.3762960139625" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 143.581px 846.024px 0px;" fill="rgb(44, 137, 200)" stroke="rgb(44, 137, 200)" stroke-width="2px" id="273" points="150.12171700801431,795.8351003933358 147.5422285866817,904.3762960139625 97.7175592900987,736.9323903996021" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 78.3108px 859.183px 0px;" fill="rgb(33, 127, 199)" stroke="rgb(33, 127, 199)" stroke-width="2px" id="274" points="0,826.101425094585 147.5422285866817,904.3762960139625 97.7175592900987,736.9323903996021" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 162.979px 748.524px 0px;" fill="rgb(57, 144, 200)" stroke="rgb(57, 144, 200)" stroke-width="2px" id="275" points="204.8077337484882,703.665227953446 150.12171700801431,795.8351003933358 59.76631745175801,666.3149125033848" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 116.418px 762.988px 0px;" fill="rgb(48, 136, 197)" stroke="rgb(48, 136, 197)" stroke-width="2px" id="276" points="97.7175592900987,736.9323903996021 150.12171700801431,795.8351003933358 59.76631745175801,666.3149125033848" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 82.962px 624.135px 0px;" fill="rgb(54, 132, 189)" stroke="rgb(54, 132, 189)" stroke-width="2px" id="277" points="113.02938737440866,577.331010660571 59.76631745175801,666.3149125033848 54.05077453552123,575.5909672566445" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 33.8188px 684.042px 0px;" fill="rgb(42, 122, 185)" stroke="rgb(42, 122, 185)" stroke-width="2px" id="278" points="0,715.118980912351 59.76631745175801,666.3149125033848 54.05077453552123,575.5909672566445" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 146.888px 559.42px 0px;" fill="rgb(72, 147, 192)" stroke="rgb(72, 147, 192)" stroke-width="2px" id="279" points="181.42554704099027,548.4879665745268 113.02938737440866,577.331010660571 130.16316078958062,482.5418752236205" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 91.5078px 571.204px 0px;" fill="rgb(62, 137, 188)" stroke="rgb(62, 137, 188)" stroke-width="2px" id="280" points="54.05077453552123,575.5909672566445 113.02938737440866,577.331010660571 130.16316078958062,482.5418752236205" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 119.037px 475.54px 0px;" fill="rgb(67, 133, 179)" stroke="rgb(67, 133, 179)" stroke-width="2px" id="281" points="118.54380812377578,482.2566657126423 130.16316078958062,482.5418752236205 75.2368571376401,386.8292242715602" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 67.4966px 503.583px 0px;" fill="rgb(58, 125, 175)" stroke="rgb(58, 125, 175)" stroke-width="2px" id="282" points="0,546.7550812825743 130.16316078958062,482.5418752236205 75.2368571376401,386.8292242715602" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 149.246px 409.311px 0px;" fill="rgb(72, 134, 174)" stroke="rgb(72, 134, 174)" stroke-width="2px" id="283" points="197.78130062753405,338.0268169233187 118.54380812377578,482.2566657126423 80.81874886103252,363.3972295471816" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 95.9653px 430.53px 0px;" fill="rgb(63, 125, 171)" stroke="rgb(63, 125, 171)" stroke-width="2px" id="284" points="75.2368571376401,386.8292242715602 118.54380812377578,482.2566657126423 80.81874886103252,363.3972295471816" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 119.492px 316.842px 0px;" fill="rgb(61, 112, 154)" stroke="rgb(61, 112, 154)" stroke-width="2px" id="285" points="193.51226750109504,267.6523645085376 80.81874886103252,363.3972295471816 1.498841569604295,293.063811615712" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 35.3558px 353.972px 0px;" fill="rgb(47, 99, 148)" stroke="rgb(47, 99, 148)" stroke-width="2px" id="286" points="0,353.05045677032086 80.81874886103252,363.3972295471816 1.498841569604295,293.063811615712" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 176.096px 236.579px 0px;" fill="rgb(69, 110, 142)" stroke="rgb(69, 110, 142)" stroke-width="2px" id="287" points="169.77027923395303,219.64172455258108 193.51226750109504,267.6523645085376 125.21467969332238,170.51386157867228" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 102.934px 268.502px 0px;" fill="rgb(60, 104, 143)" stroke="rgb(60, 104, 143)" stroke-width="2px" id="288" points="1.498841569604295,293.063811615712 193.51226750109504,267.6523645085376 125.21467969332238,170.51386157867228" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 143.137px 98.9684px 0px;" fill="rgb(48, 87, 134)" stroke="rgb(48, 87, 134)" stroke-width="2px" id="289" points="199.18070288898798,37.388797097401074 125.21467969332238,170.51386157867228 14.457329391427862,59.17395867453082" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 56.5364px 166.282px 0px;" fill="rgb(41, 77, 126)" stroke="rgb(41, 77, 126)" stroke-width="2px" id="290" points="0,192.21029963667291 125.21467969332238,170.51386157867228 14.457329391427862,59.17395867453082" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 29.0964px 25.7278px 0px;" fill="rgb(32, 71, 133)" stroke="rgb(32, 71, 133)" stroke-width="2px" id="291" points="52.46446384023871,0 14.457329391427862,59.17395867453082 0,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 6.2858px 58.2452px 0px;" fill="rgb(31, 69, 131)" stroke="rgb(31, 69, 131)" stroke-width="2px" id="292" points="0,74.79008560010624 14.457329391427862,59.17395867453082 0,0" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 91.6713px 927.118px 0px;" fill="rgb(24, 124, 207)" stroke="rgb(24, 124, 207)" stroke-width="2px" id="293" points="147.5422285866817,904.3762960139625 63.301831773848306,952.6279441628825 0,826.101425094585" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 27.5225px 948.097px 0px;" fill="rgb(12, 114, 205)" stroke="rgb(12, 114, 205)" stroke-width="2px" id="294" points="0,952.6279441628825 63.301831773848306,952.6279441628825 0,826.101425094585" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 42.4859px 796.132px 0px;" fill="rgb(27, 116, 188)" stroke="rgb(27, 116, 188)" stroke-width="2px" id="295" points="97.7175592900987,736.9323903996021 0,826.101425094585 0,804.2092941783503" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 68.4713px 713.748px 0px;" fill="rgb(40, 125, 190)" stroke="rgb(40, 125, 190)" stroke-width="2px" id="296" points="59.76631745175801,666.3149125033848 97.7175592900987,736.9323903996021 0,715.118980912351" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 42.4859px 773.702px 0px;" fill="rgb(31, 118, 188)" stroke="rgb(31, 118, 188)" stroke-width="2px" id="297" points="0,804.2092941783503 97.7175592900987,736.9323903996021 0,715.118980912351" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 23.5003px 649.009px 0px;" fill="rgb(39, 117, 180)" stroke="rgb(39, 117, 180)" stroke-width="2px" id="298" points="54.05077453552123,575.5909672566445 0,715.118980912351 0,606.0332781270155" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 80.093px 539.298px 0px;" fill="rgb(54, 127, 181)" stroke="rgb(54, 127, 181)" stroke-width="2px" id="299" points="130.16316078958062,482.5418752236205 54.05077453552123,575.5909672566445 0,546.7550812825743" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 23.5003px 592.99px 0px;" fill="rgb(42, 116, 176)" stroke="rgb(42, 116, 176)" stroke-width="2px" id="300" points="0,606.0332781270155 54.05077453552123,575.5909672566445 0,546.7550812825743" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 32.7117px 462.799px 0px;" fill="rgb(48, 110, 163)" stroke="rgb(48, 110, 163)" stroke-width="2px" id="301" points="75.2368571376401,386.8292242715602 0,546.7550812825743 0,392.56129675888496" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 67.8503px 377.352px 0px;" fill="rgb(54, 110, 158)" stroke="rgb(54, 110, 158)" stroke-width="2px" id="302" points="80.81874886103252,363.3972295471816 75.2368571376401,386.8292242715602 0,353.05045677032086" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 32.7117px 390.032px 0px;" fill="rgb(48, 103, 154)" stroke="rgb(48, 103, 154)" stroke-width="2px" id="303" points="0,392.56129675888496 75.2368571376401,386.8292242715602 0,353.05045677032086" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 0.65167px 317.344px 0px;" fill="rgb(40, 86, 135)" stroke="rgb(40, 86, 135)" stroke-width="2px" id="304" points="1.498841569604295,293.063811615712 0,353.05045677032086 0,251.3304356502781" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 55.0928px 229.412px 0px;" fill="rgb(45, 84, 128)" stroke="rgb(45, 84, 128)" stroke-width="2px" id="305" points="125.21467969332238,170.51386157867228 1.498841569604295,293.063811615712 0,192.21029963667291" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 0.65167px 264.55px 0px;" fill="rgb(38, 77, 125)" stroke="rgb(38, 77, 125)" stroke-width="2px" id="306" points="0,251.3304356502781 1.498841569604295,293.063811615712 0,192.21029963667291" data-v-d0e18030=""></polygon><polygon class="triangle" style="filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0px); transform: scale(1) rotate(0deg); transform-origin: 6.2858px 120.137px 0px;" fill="rgb(30, 65, 121)" stroke="rgb(30, 65, 121)" stroke-width="2px" id="307" points="14.457329391427862,59.17395867453082 0,192.21029963667291 0,74.79008560010624" data-v-d0e18030=""></polygon></svg></div><canvas id="screen" class="screen screen visible" prop-test="sdilfhads" data-v-59c35ec8="" width="512" height="512"></canvas><div class="content overflow-hidden hidden"><div class="h-16 flex items-center justify-center menu flex space-x-4 py-4" data-v-9bcc0be2=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="rounded-full p-2 h-10 w-10 cursor-pointer bg-gray-900 text-white" data-v-9bcc0be2=""><path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="rounded-full p-2 h-10 w-10 cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white" data-v-9bcc0be2=""><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="rounded-full p-2 h-10 w-10 cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white" data-v-9bcc0be2=""><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></div><div class="palette text-4xl font-bold overflow-auto" data-v-e2d9909e=""><div class="palette" data-v-e2d9909e=""><span class="mt-4 w-full block" data-v-e2d9909e="">Presets</span><div class="presets" data-v-e2d9909e=""><button class="preset text-base font-bold inline-block rounded-full hover:bg-gray-300 hover:text-gray-900 active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1 bg-white text-black'" data-v-e2d9909e="">discret</button><button class="preset text-base font-bold inline-block rounded-full hover:bg-gray-300 hover:text-gray-900 active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1 bg-white text-black'" data-v-e2d9909e="">default</button><button class="preset text-base font-bold inline-block rounded-full hover:bg-gray-300 hover:text-gray-900 active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1 bg-white text-black'" data-v-e2d9909e="">white</button><button class="preset text-base font-bold inline-block rounded-full hover:bg-gray-300 hover:text-gray-900 active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1 bg-white text-black'" data-v-e2d9909e="">gradient</button><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" class="inline p-2 h-10 w-10 cursor-pointer" data-v-e2d9909e=""><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg></div><span class="mt-4 w-full block" data-v-e2d9909e="">Theme</span><div class="themes" data-v-e2d9909e=""><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">unicolor</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">bicolor</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">tennis</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">mixe 3</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">special 3</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">gradient 4</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">mixe 5</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">special 5</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">mixe 6</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  selected bg-black text-white hover:hover:text-gray-200" data-v-e2d9909e="">gradient 10</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">mixe 15</button><button class="theme text-base font-bold inline-block rounded-full active:text-gray-200 active:bg-gray-900 focus:outline-none px-2 mx-1  bg-white text-black hover:bg-gray-300 hover:text-gray-900" data-v-e2d9909e="">default</button></div><span class="mt-4 w-full block" data-v-e2d9909e="">Palette</span><div class="color inline-block rounded" style="color: rgb(142, 122, 229);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(153, 118, 207);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(165, 114, 185);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(176, 109, 162);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(187, 105, 140);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(199, 101, 118);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(210, 97, 96);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(221, 92, 73);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(233, 88, 51);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(244, 84, 29);" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><div class="color inline-block rounded" style="color: rgb(136, 136, 136); display: none;" data-v-e2d9909e=""></div><!--v-if--></div></div><!--v-if--><!--v-if--></div></div></div>
+    <script type="module" src="/origami-previewer/src/main.ts"></script>
+  
+
+<script src="moz-extension://3afee262-e8d6-404c-aec4-4f8329d44bad/js/app.js" type="text/javascript"></script></body></html>

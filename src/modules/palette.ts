@@ -11,7 +11,7 @@ export class Palette {
   constructor() {
     this.palettePreset = palettePreset;
     this.modePreset = modePreset;
-    this.colors = this.palettePreset[0].palette;
+    this.colors = this.palettePreset[1].palette;
     this.theme = 'default'
     this.number = 30
   }

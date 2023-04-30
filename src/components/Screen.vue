@@ -24,11 +24,11 @@ export default {
   components: { CircleSlider },
   name: "screen",
   created() {
-    this.solid = new Solid('icosaedre', 1, 100)
+    this.solid = new Solid('icosaedre', 1, 120)
   },
   mounted() {
-    const ctx = document.getElementById('screen').getContext('2d')
-    this.screen = new Screen(this.solid,this.palette, ctx)
+    const ctx = this.$refs.screen.getContext('2d')
+    this.screen = new Screen(this.solid, this.palette, ctx)
     this.screen.definition = this.$refs.screen.clientWidth
     this.screen.play();
     window.addEventListener('resize', ()=>{
@@ -36,8 +36,9 @@ export default {
     });
 
 
-    document.onmouseup = this.mouseUp
-    document.onmousemove = this.mouseMove
+    //document.onmouseup = this.mouseUp
+    //document.onmousemove = this.mouseMove
+
 },
   data() {
     return {
@@ -77,21 +78,21 @@ export default {
     getDefinition() {
       return 500;
       // return this.solidSettingsService.definition;
-    }
+    },
   },
 }
 </script>
 <style scoped> 
 @media screen and (orientation:portrait) { 
   *{
-    --screen-side: 50vh;
-    --screen-side-max: 100vw;
+    --screen-side: 512px;
+    --screen-side-max: 60vw;
   }
 }
 @media screen and (orientation:landscape) { 
   *{
-    --screen-side: 50vw;
-    --screen-side-max: 100vh;
+    --screen-side: 512px;
+    --screen-side-max: 60vh;
   }
 }
  

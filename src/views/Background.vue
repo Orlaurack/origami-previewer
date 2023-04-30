@@ -4,6 +4,7 @@
     <svg class="background" @click="this.reload()" :style="`top: ${-size/2}; left: ${-size/2}`">
       <polygon
         v-for="(triangle, index) of orderedTriangles"
+				class="triangle"
         :key="index"
         :style="`
           filter: drop-shadow(0px 0px ${value(triangle.center)}px #00000080);
@@ -32,6 +33,11 @@ export default {
   created() {
     this.points = {}
     this.generateRow(new Coordinate(0,0,0), this.width)
+		
+		this.updateColors()
+		setInterval(() => {
+			this.updateColors()
+		}, 10000);
   },
   data() {
     return {
@@ -44,7 +50,7 @@ export default {
       random: 100,
       colors: [],
       pointer_scope: 500,
-      color_scope: 400,
+      color_scope: 800,
       mouse: {pos:new Coordinate(0,0), hovered: true}
 
     };
@@ -52,7 +58,6 @@ export default {
   computed: {
     orderedTriangles(){
       return this.triangles.sort((a,b) => this.value(a.center) < this.value(b.center)/*Math.random() < .5*/)
-
     },
     triangles(){
       const triangles = []
@@ -148,6 +153,35 @@ export default {
 
       return `rgb(${Math.round(color.r)}, ${Math.round(color.g)}, ${Math.round(color.b)})`
     },
+		updateColors(){
+			this.colors = [
+        {
+          color: {r:Math.random()*255, g:Math.random()*255, b:Math.random()*255},
+          coordinate: new Coordinate(0,0),
+          distance: this.color_scope
+        },
+        {
+          color: {r:Math.random()*255, g:Math.random()*255, b:Math.random()*255},
+          coordinate: new Coordinate(this.width*this.size*2,0),
+          distance: this.color_scope
+        },
+        {
+          color: {r:Math.random()*255, g:Math.random()*255, b:Math.random()*255},
+          coordinate: new Coordinate(0,this.size*this.height*1.8),
+          distance: this.color_scope
+        },
+        {
+          color: {r:Math.random()*255, g:Math.random()*255, b:Math.random()*255},
+          coordinate: new Coordinate(this.width*this.size*2,this.size*this.height*1.8),
+          distance: this.color_scope
+        },
+        {
+          color: {r: 128+Math.random()*128, g: 128+Math.random()*128, b: 128+Math.random()*128},
+          coordinate: new Coordinate(this.width*this.size,this.size*this.height*0.9),
+          distance: this.color_scope
+        },
+      ]
+		},
     reload(){
       this.points = {}
       this.colors = [
@@ -241,4 +275,8 @@ export default {
   position: absolute;
   transform: translate(-50%, -50%);
 }
+.triangle{
+	transition: 10000ms
+}
+
 </style>
