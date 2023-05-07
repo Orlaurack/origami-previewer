@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+		<h1 class="title">@norledia_orlaurack</h1>
     <Background ref="background"></Background>
     <Screen class="screen" :class="{visible: screenVisible}" prop-test="sdilfhads" :palette="palette" ref="screen">{{}}</Screen>
     <div class="content overflow-hidden hidden">
@@ -19,7 +20,6 @@ import Download from './views/Download.vue'
 import { Palette as PaletteModule } from './modules/palette'
 import { Screen as ScreenModule } from './modules/screen'
 import Background from './views/Background.vue'
-
 
 </script>
 <script>
@@ -86,7 +86,7 @@ export default {
 			setTimeout(() => {
 				this.palette.theme = randomPalette
 				this.palette.colors = colors 
-				this.screen.setDirection(Math.random()*360, 0.3)
+				this.screen.setDirection(Math.random()*360, 0.2)
 			}, 1000);
 
 			setTimeout(() => {
@@ -234,5 +234,11 @@ body{
 }
 .screen.visible{
 	opacity: 1
+}
+.title{
+	position:absolute;
+	bottom: 20px;
+	font-size: 32px;
+	color: white;
 }
 </style>
