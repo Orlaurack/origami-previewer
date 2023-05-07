@@ -1,7 +1,7 @@
 <template>
   <div class="background-container center">
     <!--span v-for="(point, index) of points" :key="index" class="point" :style="`top:${point.y}px; left:${point.x}px;`"></span-->
-    <svg class="background" @click="this.reload()" :style="`top: ${-size/2}; left: ${-size/2}`">
+    <svg class="background" @click="this.reload()">
       <polygon
         v-for="(triangle, index) of orderedTriangles"
 				class="triangle"
@@ -33,11 +33,7 @@ export default {
   created() {
     this.points = {}
     this.generateRow(new Coordinate(0,0,0), this.width)
-		
 		this.updateColors()
-		setInterval(() => {
-			this.updateColors()
-		}, 10000);
   },
   data() {
     return {
@@ -46,15 +42,18 @@ export default {
       height: 0,
       max_width: 0,
       max_height:0,
-      size: 50,
+      size: 100,
       random: 100,
       colors: [],
+			points_colors: ['#ff0000','#00ff00', '#0000ff', '#ffff00', '#00ffff'],
       pointer_scope: 500,
-      color_scope: 800,
+      color_scope: 100,
       mouse: {pos:new Coordinate(0,0), hovered: true}
-
     };
   },
+	props: {
+    screen: Screen
+	},
   computed: {
     orderedTriangles(){
       return this.triangles.sort((a,b) => this.value(a.center) < this.value(b.center)/*Math.random() < .5*/)
@@ -93,9 +92,6 @@ export default {
 
       return center => (this.pointer_scope - Math.min(this.pointer_scope, distance(center, this.mouse.pos)))/this.color_scope*100
     },
-  },
-  props: {
-    screen: Screen
   },
   methods: {
     generateRow(coordinate, number){
@@ -153,34 +149,39 @@ export default {
 
       return `rgb(${Math.round(color.r)}, ${Math.round(color.g)}, ${Math.round(color.b)})`
     },
-		updateColors(){
+		updateColors(colors = this.points_colors){
+			this.points_colors = colors
 			this.colors = [
         {
-          color: {r:Math.random()*255, g:Math.random()*255, b:Math.random()*255},
+          color: this.hexToRgb(colors[0]),
           coordinate: new Coordinate(0,0),
           distance: this.color_scope
         },
         {
-          color: {r:Math.random()*255, g:Math.random()*255, b:Math.random()*255},
+          color: this.hexToRgb(colors[4]),
           coordinate: new Coordinate(this.width*this.size*2,0),
           distance: this.color_scope
         },
         {
-          color: {r:Math.random()*255, g:Math.random()*255, b:Math.random()*255},
+          color: this.hexToRgb(colors[2]),
           coordinate: new Coordinate(0,this.size*this.height*1.8),
           distance: this.color_scope
         },
         {
-          color: {r:Math.random()*255, g:Math.random()*255, b:Math.random()*255},
+          color: this.hexToRgb(colors[3]),
           coordinate: new Coordinate(this.width*this.size*2,this.size*this.height*1.8),
           distance: this.color_scope
         },
         {
-          color: {r: 128+Math.random()*128, g: 128+Math.random()*128, b: 128+Math.random()*128},
+          color: this.hexToRgb(colors[4]),
           coordinate: new Coordinate(this.width*this.size,this.size*this.height*0.9),
           distance: this.color_scope
         },
       ]
+		},
+		hexToRgb(hex) {
+			var aRgbHex = hex.substring(1).match(/.{1,2}/g);
+			return {r: parseInt(aRgbHex[0], 16), g: parseInt(aRgbHex[1], 16), b: parseInt(aRgbHex[2], 16)};
 		},
     reload(){
       this.points = {}
@@ -235,6 +236,8 @@ export default {
     },
   },
   mounted() {
+		 
+    this.color_scope = (document.body.clientWidth + document.body.clientHeight) / 3 
     this.max_width = document.body.clientWidth
     this.max_height = document.body.clientHeight
     this.width = Math.ceil(this.max_width / this.size / 2)+1
@@ -276,7 +279,8 @@ export default {
   transform: translate(-50%, -50%);
 }
 .triangle{
-	transition: 10000ms
+	transition: 500ms steps(60, end);
+	transition-property: fill stroke;
 }
 
 </style>

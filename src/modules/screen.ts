@@ -24,13 +24,13 @@ export class Screen {
     fps: number
   }
   ctx: CanvasRenderingContext2D
-  readonly second= 1000
+  readonly second = 1000
 
   constructor(solid: Solid, palette: Palette,  ctx: CanvasRenderingContext2D) {
     this.solid = solid
     this.rotation = new Rotation()
     this.palette = palette
-    this.definition = 512
+    this.definition = 100
     this.size = 1
     this.selectedColor = null
     this.state = {
@@ -38,7 +38,7 @@ export class Screen {
       rotation: new Coordinate(0.3, 0),
       frameInterval: null,
       firstFrame: true,
-      fps: 30,
+      fps: 24,
       mouse: {
         position: new Coordinate(0, 0),
         downed: false
@@ -49,17 +49,17 @@ export class Screen {
 
   generateCanvas(downloadMode = false) {
 		let ctx = null
-		let scale = 1
-		let fov = 2.3
+		let scale = 1.18
+		let fov = 2.4
 		if (downloadMode) {
 			ctx = this.ctx
 			if(ctx){
-				ctx.canvas.width = 512;
-				ctx.canvas.height = 512;
+				ctx.canvas.width = this.definition;
+				ctx.canvas.height = this.definition;
 			}
-			scale = 1.2
+			scale = 1.8
     }
-    const precision = 3
+    const precision = 0
     const digits = Math.pow(10, precision);
 
     const getCoord = (coordinate: Coordinate) => {
@@ -70,7 +70,7 @@ export class Screen {
         return v * f;
       }
       const round = (v: number) => {
-        return Math.round(v * digits) / digits;
+        return Math.round(v/* * digits) / digits*/);
       }
 
       return {

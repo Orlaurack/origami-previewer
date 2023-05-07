@@ -76,7 +76,7 @@ export default {
       }
     },
     getDefinition() {
-      return 500;
+      return 100;
       // return this.solidSettingsService.definition;
     },
   },
@@ -85,13 +85,13 @@ export default {
 <style scoped> 
 @media screen and (orientation:portrait) { 
   *{
-    --screen-side: 512px;
+    --screen-side: 600px;
     --screen-side-max: 60vw;
   }
 }
 @media screen and (orientation:landscape) { 
   *{
-    --screen-side: 512px;
+    --screen-side: 600px;
     --screen-side-max: 60vh;
   }
 }
